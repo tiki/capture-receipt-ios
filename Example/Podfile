@@ -1,0 +1,22 @@
+source 'https://github.com/BlinkReceipt/PodSpecRepo.git'
+source 'https://cdn.cocoapods.org/'
+
+use_frameworks!
+
+platform :ios, '15.0'
+
+target 'CaptureReceipt_Example' do
+
+  pod 'BlinkReceipt', '~> 1.27'
+  pod 'BlinkEReceipt', '~> 2.0'  
+  pod 'TikiSdkDebug', '3.0.0', :configurations => 'Debug'
+  pod 'TikiSdkRelease', '3.0.0', :configurations => 'Release'
+  
+  pod 'CaptureReceipt', :path => '../'
+  
+  target 'CaptureReceipt_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
