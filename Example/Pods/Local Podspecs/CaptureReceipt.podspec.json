@@ -1,0 +1,44 @@
+{
+  "name": "CaptureReceipt",
+  "version": "0.1.0",
+  "summary": "Easily integrate data extraction from receipts, manage data property and licensing, and seamlessly publish data to the TIKI platform.",
+  "description": "The TIKI Capture Receipt SDK for iOS empowers users to capture and license their purchase data from various sources, including scanning physical receipts, scraping email accounts, and connecting online retailer accounts. All data collected is considered zero-party data, making it legally owned by end-users and licensed to businesses in exchange for fair compensation.\n\nWith this SDK, companies can easily integrate data extraction from receipts, manage data property and licensing, and seamlessly publish data to the TIKI platform.\n\nReceipt parsing is handled on-device, ensuring security, privacy, and compliance with App Store regulations. This process is facilitated by the closed-source, licensed SDK [Microblink](https://microblink.com). For new customers, we offer a **free Microblink license**. Schedule a meeting at [mytiki.com](https://mytiki.com) to acquire a license key.\n\nRaw receipt data is securely stored in a hosted [Iceberg](http://iceberg.apache.org) cleanroom, allowing you to query, ETL (Extract, Transform, Load), and train models against it. A sample cleanroom can be found in our [purchase repository](https://github.com/tiki/purchase).",
+  "homepage": "https://mytiki.com",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "TIKI Team": "hello@mytiki.com"
+  },
+  "source": {
+    "git": "https://github.com/tiki/capture-receipt-ios.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "15.0"
+  },
+  "source_files": "CaptureReceipt/Classes/**/*",
+  "dependencies": {
+    "BlinkReceipt": [
+      "~> 1.27"
+    ],
+    "BlinkEReceipt": [
+      "~> 2.0"
+    ],
+    "TikiSdkDebug": [
+      "3.0.0"
+    ],
+    "TikiSdkRelease": [
+      "3.0.0"
+    ]
+  },
+  "configuration_pod_whitelist": {
+    "TikiSdkDebug": [
+      "debug"
+    ],
+    "TikiSdkRelease": [
+      "release"
+    ]
+  }
+}
