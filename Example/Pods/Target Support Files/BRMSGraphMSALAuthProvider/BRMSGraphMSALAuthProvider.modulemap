@@ -1,0 +1,6 @@
+framework module BRMSGraphMSALAuthProvider {
+  umbrella header "BRMSGraphMSALAuthProvider-umbrella.h"
+
+  export *
+  module * { export * }
+}
