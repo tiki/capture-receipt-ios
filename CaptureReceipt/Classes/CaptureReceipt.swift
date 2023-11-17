@@ -10,6 +10,7 @@ public class CaptureReceipt {
     private static var license: LicenseRecord? = nil
     private static var configuration: Configuration? = nil
     private static var userId: String? = nil
+    private static var title: TitleRecord? = nil
     
     /// Initializes the Capture Receipt SDK.
     ///
@@ -37,11 +38,13 @@ public class CaptureReceipt {
                 ptr: userId,
                 tags: [Tag(tag:TagCommon.PURCHASE_HISTORY)])
         }
+        CaptureReceipt.title = title
         license = try await tikiSdk.trail.license.create(
             titleId: title!.id,
             uses: [Use(usecases: [Usecase(usecase: UsecaseCommon.analytics)], destinations: ["*"])],
             terms: configuration!.terms
         )
+        CaptureReceipt.userId = userId
     }
     
     /// Configures the Capture Receipt SDK with the necessary parameters.
@@ -86,7 +89,7 @@ public class CaptureReceipt {
         onComplete: @escaping () -> Void
     ) async {
         do{
-            let isLicensed = try await tikiSdk.trail.guard(ptr: userId!, usecases: [Usecase(usecase: UsecaseCommon.analytics)], destinations: ["*"])
+            let licenses = try await tikiSdk.trail.license.all(titleId: title!.id)
             physical!.scan(scanCallback: PhysicalScanCallbacks(
                 onResult: { receipt in
                     publish(receipt, onError, onComplete)

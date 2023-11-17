@@ -497,7 +497,7 @@
 				INFOPLIST_FILE = CaptureReceipt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mytiki.capture-receipt.example";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mytiki.capture.receipt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
