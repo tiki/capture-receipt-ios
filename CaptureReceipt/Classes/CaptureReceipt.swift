@@ -6,8 +6,10 @@ public class CaptureReceipt {
     private static var tikiSdk: TikiSdk = TikiSdk.instance
     private static var email: Email? = nil
     private static var retailer: Retailer? = nil
+    private static var physical: Physical? = nil
     private static var license: LicenseRecord? = nil
     private static var configuration: Configuration? = nil
+    private static var userId: String? = nil
     
     /// Initializes the Capture Receipt SDK.
     ///
@@ -28,6 +30,7 @@ public class CaptureReceipt {
         try await tikiSdk.initialize(id: userId, publishingId: configuration!.tikiPublishingID)
         email = Email(configuration!.microblinkLicenseKey, configuration!.productIntelligenceKey)
         retailer = Retailer(configuration!.microblinkLicenseKey, configuration!.productIntelligenceKey)
+        physical = Physical()
         var title = try await tikiSdk.trail.title.get(ptr: userId)
         if(title == nil){
             title = try await tikiSdk.trail.title.create(
@@ -67,7 +70,7 @@ public class CaptureReceipt {
             outlookAPIKey: outlookAPIKey
         )
     }
-
+    
     /// Initiates a scan for a physical receipt.
     ///
     /// - Parameters:
@@ -81,8 +84,24 @@ public class CaptureReceipt {
         onReceipt: @escaping (Receipt) -> Void,
         onError: @escaping (Error) -> Void,
         onComplete: @escaping () -> Void
-    ) {}
-
+    ) async {
+        do{
+            let isLicensed = try await tikiSdk.trail.guard(ptr: userId!, usecases: [Usecase(usecase: UsecaseCommon.analytics)], destinations: ["*"])
+            physical!.scan(scanCallback: PhysicalScanCallbacks(
+                onResult: { receipt in
+                    publish(receipt, onError, onComplete)
+                    onReceipt(receipt)
+                },
+                onCancel: onComplete,
+                onError: { error in
+                    onError(error)
+                    onComplete()
+                }))
+        }catch{
+            onError(error)
+        }
+    }
+    
     /// Log in to an account for receipt data retrieval.
     ///
     /// - Parameters:
@@ -98,14 +117,14 @@ public class CaptureReceipt {
         onSuccess: @escaping (Account) -> Void,
         onError: @escaping (Error) -> Void
     ) {}
-
+    
     /// Retrieve a list of connected accounts.
     ///
     /// - Returns: A list of connected accounts.
     public static func accounts() -> [Account] {
         return []
     }
-
+    
     /// Log out of an account.
     ///
     /// - Parameters:
@@ -117,7 +136,7 @@ public class CaptureReceipt {
         onSuccess: @escaping () -> Void,
         onError: @escaping (Error) -> Void
     ) {}
-
+    
     /// Retrieve digital receipt data for a specific account type.
     ///
     /// This function allows you to retrieve receipt data from all accounts of an account type, such as email or retailer accounts.
@@ -133,7 +152,7 @@ public class CaptureReceipt {
         onError: @escaping (Error) -> Void,
         onComplete: @escaping () -> Void
     ) {}
-
+    
     /// Retrieve digital receipt data for a specific account.
     ///
     /// This function allows you to retrieve digital receipts associated with a specific account.
@@ -149,7 +168,7 @@ public class CaptureReceipt {
         onError: @escaping (Error) -> Void,
         onComplete: @escaping () -> Void
     ) {}
-
+    
     /// Retrieve digital receipt data for all connected accounts.
     ///
     /// This function allows you to retrieve digital receipts associated with all of the user's connected accounts.
@@ -163,4 +182,51 @@ public class CaptureReceipt {
         onError: @escaping (Error) -> Void,
         onComplete: @escaping () -> Void
     ) {}
+    
+    private static func publish(
+        _ receipt: Receipt,
+        _ onError: ((Error) -> Void)? = nil,
+        _ onComplete: (() -> Void)? = nil ) {
+            Task{
+                do{
+                    let token: Token = try await tikiSdk.idp.token()
+                    let url = URL(string: "https://ingest.mytiki.com/api/latest/microblink-receipt")!
+                    var request = URLRequest(url: url)
+                    request.httpMethod = "POST"
+                    
+                    request.addValue("Bearer \(token.accessToken)", forHTTPHeaderField: "Authorization")
+                    
+                    if let requestBody = try? JSONEncoder().encode(receipt) {
+                        request.httpBody = requestBody
+                    }
+                    
+                    URLSession.shared.dataTask(with: request) { (data, response, error) in
+                        if let error = error {
+                            print("Failed to upload receipt. Skipping. \(error)")
+                            return
+                        }
+                        
+                        guard let httpResponse = response as? HTTPURLResponse else {
+                            print("Failed to upload receipt. Skipping. Unexpected response.")
+                            return
+                        }
+                        
+                        if httpResponse.statusCode == 200 {
+                            // Successful response
+                            print("Receipt uploaded successfully.")
+                        } else {
+                            // Handle error response
+                            if let data = data, let responseBody = String(data: data, encoding: .utf8) {
+                                print("Failed to upload receipt. Skipping. \(responseBody)")
+                            } else {
+                                print("Failed to upload receipt. Skipping. Unknown error.")
+                            }
+                        }
+                    }.resume()
+                }catch{
+                    onError?(error)
+                }
+                onComplete?()
+            }
+        }
 }
