@@ -7,7 +7,6 @@
 import Foundation
 import BlinkReceipt
 import BlinkEReceipt
-import Capacitor
 
 /// A Swift class representing an email plugin for handling e-receipts and email account management.
 public class Email {
@@ -19,13 +18,22 @@ public class Email {
     /// - Parameters:
     ///   - licenseKey: The license key for the plugin.
     ///   - productKey: The product key for the plugin.
-    public init(_ licenseKey: String, _ productKey: String){
-        DispatchQueue.main.async {
-            BRScanManager.shared().licenseKey = licenseKey
-            BRScanManager.shared().prodIntelKey = productKey
-            BRAccountLinkingManager.shared()
+    ///   - googleClientId: The Google Client ID for OAuth authentication (optional).
+    ///   - outlookClientId: The Outlook Client ID for OAuth authentication (optional).
+        public init(_ licenseKey: String, _ productKey: String, _ googleClientId: String? = nil,  _ outlookClientId: String? = nil)  {
+            DispatchQueue.main.async {
+                BRScanManager.shared().licenseKey = licenseKey
+                BRScanManager.shared().prodIntelKey = productKey
+                if(googleClientId != nil){
+                    BREReceiptManager.shared().googleClientId = googleClientId
+                }
+                if(outlookClientId != nil){
+                    BREReceiptManager.shared().outlookClientId = outlookClientId
+                }
+                BRAccountLinkingManager.shared()
+            }
+            
         }
-    }
     
     /// Logs in a user account using the provided credentials or initiates OAuth authentication for Gmail.
     ///
@@ -33,7 +41,7 @@ public class Email {
     ///   - account: An instance of the Account class containing user and account information.
     ///   - onError: A closure to handle error messages.
     ///   - onSuccess: A closure to handle success actions.
-    public func login(_ account: Account, onError: @escaping (String, RspErrorEnum) -> Void, onSuccess: @escaping () -> Void)  {
+    public func login(_ account: Account, onError: @escaping (String, Error) -> Void, onSuccess: @escaping () -> Void)  {
         let email = BRIMAPAccount(provider: .gmailIMAP, email: account.user, password: account.password!)
         DispatchQueue.main.async {
             let rootVc = UIApplication.shared.windows.first?.rootViewController
@@ -44,16 +52,16 @@ public class Email {
                             onSuccess()
                             return
                         } else {
-                            onError(error.debugDescription, .ERROR)
+                            //onError(error.debugDescription, .ERROR)
                             return
                         }
                     }
                     if(receivedError == BREReceiptIMAPError.gmailIMAPDisabled.rawValue){
                         BREReceiptManager.shared().signOut(from: email) { errorLogout in
-                            onError("Please, activate the Gmail IMAP", .GmailIMAPDisabled)
+//                            onError("Please, activate the Gmail IMAP", .GmailIMAPDisabled)
                         }
                     }else{
-                        onError(error.debugDescription, .ERROR)
+//                        onError(error.debugDescription, .ERROR)
                     }
                 })
             })

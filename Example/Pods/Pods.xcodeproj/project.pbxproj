@@ -1703,6 +1703,8 @@
 		8BFEEE62CF739106E82B16E904BDFAAE /* MSIDRedirectUriVerifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 736F80C3EB87EF588272C7294BEA76A7 /* MSIDRedirectUriVerifier.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		8C0C4CC6F84666C70DAF4B941F1D8BDD /* MSIDOauth2Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C48A4614ED8EE3D421F6F77D4A56C2 /* MSIDOauth2Factory.m */; };
 		8C138E15F1EE419EA6A0ADD2535C9A0D /* GIDAuthentication_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 99D4C8362B7C58FF637820EE761E50A8 /* GIDAuthentication_Private.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		8C45443D2B066F4B0094A781 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C45443B2B066F160094A781 /* Configuration.swift */; };
+		8C45443F2B066FA90094A781 /* Receipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C45443E2B066FA90094A781 /* Receipt.swift */; };
 		8C48048AEB98B038CD5C1AEEBD1F7B8C /* MSGraphScreenSharingRole.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA125933076A6FB36432FF5A0BCF17D /* MSGraphScreenSharingRole.m */; };
 		8C53F2BAAEFB33B06C58E5361D520955 /* MSIDBrokerOperationInteractiveTokenRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2616F8DE64E2875BA391316FEAA9A400 /* MSIDBrokerOperationInteractiveTokenRequest.m */; };
 		8C564196CEC6C94EB3A4B0957E56F859 /* MSGraphWorkbookChartFill.h in Headers */ = {isa = PBXBuildFile; fileRef = E9EDED6AF05363D2DD560DF589F27345 /* MSGraphWorkbookChartFill.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -4209,7 +4211,7 @@
 		3FB0C2B7A47D33EDDD4FE93575E8A6BB /* MSGraphWorkbookRangeView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MSGraphWorkbookRangeView.h; path = GeneratedModels/MSGraphWorkbookRangeView.h; sourceTree = "<group>"; };
 		3FC981C297A89F9DC2501CC0E65A3C58 /* MSGraphClientModels-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MSGraphClientModels-umbrella.h"; sourceTree = "<group>"; };
 		3FD0906506774FE9EDD126F2D9CFC3D4 /* MSGraphFreeBusyStatus.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MSGraphFreeBusyStatus.m; path = GeneratedModels/MSGraphFreeBusyStatus.m; sourceTree = "<group>"; };
-		3FD1B4C1246D643E9476438C28048FA8 /* AppAuth */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = AppAuth; path = AppAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FD1B4C1246D643E9476438C28048FA8 /* AppAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AppAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FF101550BCC4456EACF02EAC2EB4010 /* MSGraphIncompleteData.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MSGraphIncompleteData.h; path = GeneratedModels/MSGraphIncompleteData.h; sourceTree = "<group>"; };
 		401C5235AEA8DFEF0AC41EEA19D64036 /* MSGraphGenericError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MSGraphGenericError.h; path = GeneratedModels/MSGraphGenericError.h; sourceTree = "<group>"; };
 		401CACC9BC42596B4D3DF44F439337E3 /* CaptureReceipt-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CaptureReceipt-umbrella.h"; sourceTree = "<group>"; };
@@ -5142,6 +5144,8 @@
 		8C0A4693C7B7CF15CD2FEAA1397EA174 /* ReqKey.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReqKey.swift; path = TikiSdk/Idp/Req/ReqKey.swift; sourceTree = "<group>"; };
 		8C1886F1BCC07F8B3679E53C4EA7C736 /* MSGraphActivityDomain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MSGraphActivityDomain.h; path = GeneratedModels/MSGraphActivityDomain.h; sourceTree = "<group>"; };
 		8C3AA093F3FF1415F94885D3CDFF42D7 /* MSALPublicClientApplicationConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MSALPublicClientApplicationConfig.h; path = MSAL/src/public/configuration/MSALPublicClientApplicationConfig.h; sourceTree = "<group>"; };
+		8C45443B2B066F160094A781 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		8C45443E2B066FA90094A781 /* Receipt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Receipt.swift; sourceTree = "<group>"; };
 		8C485580B44832C1DE3295DB35047535 /* MSGraphPhysicalOfficeAddress.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MSGraphPhysicalOfficeAddress.m; path = GeneratedModels/MSGraphPhysicalOfficeAddress.m; sourceTree = "<group>"; };
 		8C65C6AEEF75238BA4110F70B98A6707 /* MSGraphWorkbookNamedItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MSGraphWorkbookNamedItem.h; path = GeneratedModels/MSGraphWorkbookNamedItem.h; sourceTree = "<group>"; };
 		8C6DE38273A61D08BA277E3C14EFFD25 /* MSIDWebViewPlatformParams.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MSIDWebViewPlatformParams.m; path = MSAL/IdentityCore/IdentityCore/src/webview/embeddedWebview/ui/ios/MSIDWebViewPlatformParams.m; sourceTree = "<group>"; };
@@ -8177,6 +8181,14 @@
 			name = Gmail;
 			sourceTree = "<group>";
 		};
+		8C4544402B066FD20094A781 /* Receipt */ = {
+			isa = PBXGroup;
+			children = (
+				8C45443E2B066FA90094A781 /* Receipt.swift */,
+			);
+			path = Receipt;
+			sourceTree = "<group>";
+		};
 		8CC7B96BA27B9058B42DD0FD4D67C6AF /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -8192,17 +8204,11 @@
 			path = "Example/Pods/Target Support Files/CaptureReceipt";
 			sourceTree = "<group>";
 		};
-		8CFF53702AEFEEB100F64DC6 /* Config */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Config;
-			sourceTree = "<group>";
-		};
 		90B50031D939850520DA8645D0529612 /* CaptureReceipt */ = {
 			isa = PBXGroup;
 			children = (
-				8CFF53702AEFEEB100F64DC6 /* Config */,
+				8C4544402B066FD20094A781 /* Receipt */,
+				8C45443B2B066F160094A781 /* Configuration.swift */,
 				9BCEB545DB6B3E1914A91910A6CAF15F /* CaptureReceipt.swift */,
 				91B7297359102D0DA0CF2F7312B2ECB2 /* Account */,
 				A8EB139428FFF2A20277ECF1F38A52EB /* Email */,
@@ -8323,7 +8329,7 @@
 		AD3BA5798E09844BE3682EBA150CB3BD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3FD1B4C1246D643E9476438C28048FA8 /* AppAuth */,
+				3FD1B4C1246D643E9476438C28048FA8 /* AppAuth.framework */,
 				76458417952C3DCE7979DC5B00633436 /* BRMSGraphMSALAuthProvider */,
 				69C3384CB830C2E9E5D664C390FD7895 /* CaptureReceipt */,
 				FD519882861480B93B563B477CE1FA29 /* GoogleAPIClientForREST */,
@@ -12062,7 +12068,7 @@
 			);
 			name = AppAuth;
 			productName = AppAuth;
-			productReference = 3FD1B4C1246D643E9476438C28048FA8 /* AppAuth */;
+			productReference = 3FD1B4C1246D643E9476438C28048FA8 /* AppAuth.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		6CF5F4B7E205F849A2CD8DA08B28241B /* TikiSdkRelease */ = {
@@ -12281,6 +12287,11 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1300;
 				LastUpgradeCheck = 1300;
+				TargetAttributes = {
+					5C642AA10FB29936669CC269F42079C6 = {
+						LastSwiftMigration = 1430;
+					};
+				};
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -12652,6 +12663,7 @@
 				211DB3F2132037FCAA49ED32E4295E49 /* FormatDate.swift in Sources */,
 				0D39F54DD6F6971AB7709471961790FA /* Retailer.swift in Sources */,
 				92274539EB605E26ABBC9E45ED8164A0 /* RetailerEnum.swift in Sources */,
+				8C45443D2B066F4B0094A781 /* Configuration.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -13336,6 +13348,7 @@
 				C8976FBA6C401ACD821CC8008118D275 /* OIDIDToken.m in Sources */,
 				608DEEB38C6B137DBC9A71197CBFD19D /* OIDRegistrationRequest.m in Sources */,
 				FDE948CC3A35F70EAEB413E5DE09C5ED /* OIDRegistrationResponse.m in Sources */,
+				8C45443F2B066FA90094A781 /* Receipt.swift in Sources */,
 				DE601C5596687C11434FC0E08F30F076 /* OIDResponseTypes.m in Sources */,
 				5176304A117EC8C69261BB47E63C1B5F /* OIDScopes.m in Sources */,
 				2E767405F0004A42FC8FFBA1E21DFE20 /* OIDScopeUtilities.m in Sources */,
@@ -15287,6 +15300,7 @@
 			baseConfigurationReference = 2EBBBC2FED22129F4E80704B5F789C97 /* AppAuth.release.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -15433,6 +15447,7 @@
 			baseConfigurationReference = 254F4FF17D2D2EBF87677E0A3958633A /* AppAuth.debug.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -15452,6 +15467,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";

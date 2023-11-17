@@ -6,7 +6,6 @@
 
 import Foundation
 import BlinkEReceipt
-import Capacitor
 
 /// An enumeration representing various retailer names as raw string values.
 public enum RetailerEnum: String {
