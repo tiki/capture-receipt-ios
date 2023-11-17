@@ -8,7 +8,6 @@
 import Foundation
 import BlinkReceipt
 import BlinkEReceipt
-import Capacitor
 
 /// A Swift class representing an account, which can be of different types, such as email or retailer.
 public class Account {
@@ -52,17 +51,6 @@ public class Account {
         self.password = password
     }
 
-    
-    /// Converts the Account object to a PluginCallResultData dictionary for use in plugin calls.
-    ///
-    /// - Returns: A PluginCallResultData dictionary representing the Account object's properties.
-    func toResultData() -> PluginCallResultData {
-        return [
-            "username" : user,
-            "source" : accountType.source,
-            "verified" : isVerified ?? false
-        ]
-    }
     
     /// Converts the Account object to a PluginCallResultData dictionary for use in plugin calls.
     ///

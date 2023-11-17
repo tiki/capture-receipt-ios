@@ -51,55 +51,41 @@ target <YOUR TARGET> do
 
   pod 'BlinkReceipt', '~> 1.27'
   pod 'BlinkEReceipt', '~> 2.0'  
-  pod 'TikiSdkDebug', '3.0.0', :configurations => 'Debug'
-  pod 'TikiSdkRelease', '3.0.0', :configurations => 'Release'
+  pod 'TikiSdkDebug', '~> 3.0.0', :configurations => 'Debug'
+  pod 'TikiSdkRelease', '~> 3.0.0', :configurations => 'Release'
+  pod 'CaptureReceipt', '~> 0.1.0'
 
 end
 ```
 
-### 2. Initialize the SDK
+### 2. Config the SDK
 
-During SDK initialization, Capture Receipt initializes the TIKI and Microblink SDKs and creates a License Record for the data provided by users. You need to provide the company's information and the API keys for TIKI and Microblink. Here's how you can initialize the SDK:
+During SDK initialization, Capture Receipt initializes the TIKI and Microblink SDKs and creates a License Record for the data provided by users. You need to provide the license legal terms as a text or a URL with the text and the API keys for TIKI and Microblink. It is achieved by calling `CaptureReceipt.configure` with a `Configuration` object
 
-```swift
-let config = Configuration(
-    company: Company(
-        name: "Company Inc.",
-        location: "Tennessee, USA",
-        privacyPolicyURL: URL(string: "https://your-co.com/privacy"),
-        termsOfServiceURL: URL(string: "https://your-co.com/terms")
-    ),
-    key: Key(
-        tikiPublishingID: "YOUR TIKI PUBLISHING ID",
-        microblinkLicenseKey: "YOUR MICROBLINK LICENSE KEY",
-        productIntelligenceKey: "YOUR MICROBLINK PRODUCT INTELLIGENCE KEY"
-    )
-)
-
-CaptureReceipt.initialize(
-    userID: "YOUR USER ID",
-    configuration: config
-)
-```
-
-Now, users can provide their receipt data, and the SDK will handle the licensing and publishing of it.
-
-### Initialize Gmail and/or Outlook APIs
+#### Optional - Use Gmail/Outlook APIs 
 
 Capture Receipt utilizes IMAP for email scraping as the default method. For an enhanced user experience and improved accuracy, we recommend considering the use of the [Gmail API](https://developers.google.com/gmail/api) and [Outlook API](https://docs.microsoft.com/en-us/outlook/rest/overview) for email scraping. The utilization of these APIs is optional, and you have the flexibility to choose either one, or both.
 
 ```swift
-let emailConfig = EmailConfiguration(
-    gmailAPIKey: "YOUR GMAIL API KEY",
-    outlookAPIKey: "YOUR OUTLOOK API KEY"
+let configuration = Configuration(
+  tikiPublishingID: "YOUR TIKI PUBLISHING ID",
+  microblinkLicenseKey: "YOUR MICROBLINK LICENSE KEY",
+  productIntelligenceKey: "YOUR MICROBLINK PRODUCT INTELLIGENCE KEY",
+  terms: "THE DATA LICENSE LEGAL TERMS BETWEEN YOU AND THE USER",
+  gmailAPIKey: "YOUR GMAIL API KEY", // optional
+  outlookAPIKey: "YOUR OUTLOOK API KEY" // optional
 )
 
-CaptureReceipt.initialize(
-    userID: "YOUR USER ID",
-    configuration: config,
-    emailConfiguration: emailConfig
-)
+CaptureReceipt.config(configuration)
 ```
+
+### 3. Initialize
+
+```
+CaptureReceipt.initialize( userID: "YOUR USER ID" )
+```
+
+That's it! Now, users can provide their receipt data, and the SDK will handle the licensing and publishing of it.
 
 ## SDK Usage
 
@@ -177,7 +163,7 @@ Don't worry; license records issued are backed up to TIKI's immutable, hosted st
 ```swift
 let account = CaptureReceipt.account(username: "ACCOUNT USERNAME", accountType: .gmail)
 
-CaptureReceipt.receipts(
+CaptureReceipt.scrape(
     account: account,
     onReceipt: { receipt in
         print("Receipt Data: \(receipt)")
@@ -194,7 +180,7 @@ CaptureReceipt.receipts(
 #### All Email or All Retailer Accounts
 
 ```swift
-CaptureReceipt.receipts(
+CaptureReceipt.scrape(
     accountType: .email, // or .retailer
     onReceipt: { receipt in
         print("Receipt Data: \(receipt)")
@@ -211,7 +197,7 @@ CaptureReceipt.receipts(
 #### All Connected Accounts
 
 ```swift
-CaptureReceipt.receipts(
+CaptureReceipt.scrape(
     onReceipt: { receipt in
         print("Receipt Data: \(receipt)")
     },

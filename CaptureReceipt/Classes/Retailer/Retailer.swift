@@ -7,10 +7,9 @@
 import Foundation
 import BlinkReceipt
 import BlinkEReceipt
-import Capacitor
 
-/// A Swift class representing a retailer plugin for use with Capacitor.
-public class Retailer : CAPPlugin{
+/// A Swift class representing a retailer plugin for use with
+public class Retailer {
     
     /// Initializes the Retailer plugin with license and product keys.
     ///
@@ -23,11 +22,6 @@ public class Retailer : CAPPlugin{
             BRScanManager.shared().prodIntelKey = productKey
             BRAccountLinkingManager.shared()
         }
-        super.init()
-    }
-    /// Default initializer for the Retailer plugin.
-    public override init() {
-        super.init()
     }
     /// Logs in a user account with the specified credentials.
     ///
