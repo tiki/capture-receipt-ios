@@ -58,9 +58,27 @@ target <YOUR TARGET> do
 end
 ```
 
-### 2. Config the SDK
+### 3. Config the SDK
 
 During SDK initialization, Capture Receipt initializes the TIKI and Microblink SDKs and creates a License Record for the data provided by users. You need to provide the license legal terms as a text or a URL with the text and the API keys for TIKI and Microblink. It is achieved by calling `CaptureReceipt.configure` with a `Configuration` object
+
+### 4. Add Camera usage description (required for physical receipts scan)
+
+In order to use the camera in iOS, the app must provide the a message that tells the user why the app is requesting access to the device’s camera. This is done by setting up the `NSCameraUsageDescription` in the `info.plist`.
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+... other existing values
+	<key>NSCameraUsageDescription</key>
+	<string>The camera is used to scan physical receipts</string>
+</dict>
+</plist>
+```
+
+It can be set in XCode too, with the `Privacy - Camera Usage Description` key in `info.plist` editor.
 
 #### Optional - Use Gmail/Outlook APIs 
 

@@ -4,13 +4,16 @@
  */
 
 import Foundation
+import BlinkReceipt
 
 /**
  A class representing a response containing receipt information for the ReceiptCapture plugin.
  
  This class encapsulates detailed information about a receipt, including various receipt fields such as date, time, products, coupons, totals, and more.
  */
-public class Receipt{
+public class Receipt: Encodable{
+    
+    init(scanResults: BRScanResults){}
 //    /// The date of the receipt, if available.
 //    private let receiptDate: JSStringType?
 //    /// The time of the receipt, if available.
