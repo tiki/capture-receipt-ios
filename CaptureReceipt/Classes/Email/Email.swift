@@ -22,15 +22,15 @@ public class Email {
     ///   - outlookClientId: The Outlook Client ID for OAuth authentication (optional).
         public init(_ licenseKey: String, _ productKey: String, _ googleClientId: String? = nil,  _ outlookClientId: String? = nil)  {
             DispatchQueue.main.async {
-                BRScanManager.shared().licenseKey = licenseKey
-                BRScanManager.shared().prodIntelKey = productKey
-                if(googleClientId != nil){
-                    BREReceiptManager.shared().googleClientId = googleClientId
-                }
-                if(outlookClientId != nil){
-                    BREReceiptManager.shared().outlookClientId = outlookClientId
-                }
-                BRAccountLinkingManager.shared()
+//                BRScanManager.shared().licenseKey = licenseKey
+//                BRScanManager.shared().prodIntelKey = productKey
+//                if(googleClientId != nil){
+//                    BREReceiptManager.shared().googleClientId = googleClientId
+//                }
+//                if(outlookClientId != nil){
+//                    BREReceiptManager.shared().outlookClientId = outlookClientId
+//                }
+//                BRAccountLinkingManager.shared()
             }
             
         }
@@ -41,8 +41,8 @@ public class Email {
     ///   - account: An instance of the Account class containing user and account information.
     ///   - onError: A closure to handle error messages.
     ///   - onSuccess: A closure to handle success actions.
-    public func login(_ account: Account, onError: @escaping (String, Error) -> Void, onSuccess: @escaping () -> Void)  {
-        let email = BRIMAPAccount(provider: .gmailIMAP, email: account.user, password: account.password!)
+    public func login(username: String, password: String, onError: @escaping (String, Error) -> Void, onSuccess: @escaping () -> Void)  {
+        let email = BRIMAPAccount(provider: .gmailIMAP, email: username, password: password)
         DispatchQueue.main.async {
             let rootVc = UIApplication.shared.windows.first?.rootViewController
             BREReceiptManager.shared().setupIMAP(for: email, viewController: rootVc!, withCompletion: { result in
@@ -132,9 +132,9 @@ public class Email {
     public func accounts(onError: (String) -> Void, onAccount: (Account) -> Void,  onComplete: () -> Void) {
         let linkedAccounts = BREReceiptManager.shared().getLinkedAccounts()
         linkedAccounts?.forEach{ brAccount in
-            let account = Account(provider: brAccount.provider, email:brAccount.email)
-            account.isVerified = true
-            onAccount(account)
+////            let account = Account())
+//            account.isVerified = true
+//            onAccount(account)
         }
         onComplete()
     }

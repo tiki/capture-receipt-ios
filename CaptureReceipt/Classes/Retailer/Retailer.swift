@@ -26,37 +26,31 @@ public class Retailer {
     /// Logs in a user account with the specified credentials.
     ///
     /// - Parameters:
-    ///   - account: An instance of the Account struct containing user and account information.
+    ///   - username: The account's username
+    ///   - password: The account's password
+    ///   - accountType: The account Type
     ///   - onError: A closure to handle error messages.
     ///   - onSuccess: A closure to handle successful login.
-    public func login(_ account: Account, onError: @escaping (String) -> Void, onSuccess: @escaping (Account) -> Void) {
+    public func login(username: String, password: String, retailer: RetailerEnum, onError: @escaping (String) -> Void, onSuccess: @escaping (Account) -> Void) {
         let dayCutoff: Int = 15
-        let username: String = account.user
-        guard let retailer: BRAccountLinkingRetailer =
-                RetailerEnum(rawValue: account.accountType.source)?.toBRAccountLinkingRetailer() else {
-            onError("Unsuported retailer \(account.accountType.source)")
-            return
-        }
-        guard let password: String = account.password else {
-            onError("Password is required for login")
-            return
-        }
-        let connection = BRAccountLinkingConnection( retailer: retailer, username: username,
-                                                     password: password)
+        let connection = BRAccountLinkingConnection(
+            retailer: retailer.toBRAccountLinkingRetailer(), username: username, password: password
+        )
         connection.configuration.dayCutoff = dayCutoff
         connection.configuration.returnLatestOrdersOnly = true
         connection.configuration.countryCode = "US"
         let error = BRAccountLinkingManager.shared().linkRetailer(with: connection)
-        if (error == .none) {
-            // Success
+        if (error == .none || error == .accountLinkedAlready) {
+            let account = Account(accountType: .retailer(retailer), user: username, password: nil, isVerified: true)
             DispatchQueue.main.async{
                 BRAccountLinkingManager.shared().verifyRetailer(with: connection, withCompletion: {
                     error, viewController, sessionId in
-                    self.verifyRetailerCallback(error,viewController, connection, { error in onError(error) }, {account in onSuccess(account)}, account)
+                    self.verifyRetailerCallback(
+                        error, viewController, connection, { error in onError(error) }, {onSuccess(account)})
                 })
             }
         }else {
-            onError("Login Error")
+            onError("Error in retailer connection")
         }
     }
     /// Logs out a user account.
@@ -75,18 +69,18 @@ public class Retailer {
             }
             return
         }
-        
-        guard let retailer: BRAccountLinkingRetailer = RetailerEnum( rawValue: account!.accountType.source)?.toBRAccountLinkingRetailer() else {
-            onError("Unsuported retailer \(account!.accountType.type)")
-            return
-        }
-        
-        BRAccountLinkingManager.shared().resetHistory(for: retailer)
-        DispatchQueue.main.async {
-            BRAccountLinkingManager.shared().unlinkAccount(for: retailer) {
-                onComplete()
-            }
-        }
+//
+//        guard let retailer: BRAccountLinkingRetailer = RetailerEnum( rawValue: account!.accountType.source)?.toBRAccountLinkingRetailer() else {
+//            onError("Unsuported retailer \(account!.accountType.type)")
+//            return
+//        }
+//
+//        BRAccountLinkingManager.shared().resetHistory(for: retailer)
+//        DispatchQueue.main.async {
+//            BRAccountLinkingManager.shared().unlinkAccount(for: retailer) {
+//                onComplete()
+//            }
+//        }
 
     }
     /// Retrieves orders for a specific user account or for all linked accounts.
@@ -130,9 +124,10 @@ public class Retailer {
         public func accounts (onError: (String) -> Void, onAccount: (Account) -> Void,  onComplete: () -> Void) {
             let retailers = BRAccountLinkingManager.shared().getLinkedRetailers()
             for ret in retailers {
-                let connection =  BRAccountLinkingManager.shared().getLinkedRetailerConnection(BRAccountLinkingRetailer(rawValue: ret.uintValue)!)
-                let accountCommon = AccountCommon.init(type: .retailer, source: RetailerEnum.fromBRAccountLinkingRetailer(BRAccountLinkingRetailer(rawValue: ret.uintValue)!).toString()!)
-                let account = Account(accountType: accountCommon, user: connection!.username!, password: connection!.password!, isVerified: true)
+                let retailer = BRAccountLinkingRetailer(rawValue: ret.uintValue)!
+                let connection =  BRAccountLinkingManager.shared().getLinkedRetailerConnection(retailer)
+                let accountType: AccountType = .retailer(RetailerEnum.fromBRAccountLinkingRetailer(retailer))
+                let account = Account(accountType: accountType, user: connection!.username!, password: connection!.password!, isVerified: true)
                 onAccount(account)
             }
             onComplete()
@@ -146,15 +141,13 @@ public class Retailer {
     ///   - connection: The BRAccountLinkingConnection object representing the user's account connection.
     ///   - onError: A closure to handle error messages.
     ///   - onComplete: A closure to handle the completion of the verification process.
-    ///   - account: An instance of the Account struct containing user and account information.
         private func verifyRetailerCallback(
             _ error: BRAccountLinkingError,
             _ viewController: UIViewController?,
             _ connection: BRAccountLinkingConnection,
             _ onError: (String) -> Void,
-            _ onComplete: (Account) -> Void,
-            _ account: Account)
-        {
+            _ onComplete: () -> Void
+        ){
             switch error {
             case .verificationNeeded :
                 let rootVc = UIApplication.shared.windows.first?.rootViewController
@@ -182,9 +175,7 @@ public class Retailer {
                 break
             default :
                 BRAccountLinkingManager.shared().linkRetailer(with: connection)
-                account.isVerified = true
-                onComplete(account)
-                
+                onComplete()
             }
         }
     }

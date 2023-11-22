@@ -8,17 +8,15 @@ import Foundation
 import BlinkEReceipt
 
 /// An enumeration representing various retailer names as raw string values.
-public enum RetailerEnum: String {
+public enum RetailerEnum{
     
-    // List of supported retailer names
     case ACME_MARKETS
     case ALBERTSONS
     case AMAZON
-//    case AMAZON_BETA
+    case AMAZON_BETA
     case AMAZON_CA
     case AMAZON_UK
     case BED_BATH_AND_BEYOND
-    case GMAIL
     case BESTBUY
     case BJS_WHOLESALE
     case CHEWY
@@ -80,7 +78,7 @@ public enum RetailerEnum: String {
             case .acmeMarkets : return .ACME_MARKETS
             case .albertsons : return .ALBERTSONS
             case .amazon : return .AMAZON
-            case .amazonBeta : return .AMAZON
+            case .amazonBeta : return .AMAZON_BETA
             case .amazonBetaCA : return .AMAZON_CA
             case .amazonBetaUK : return .AMAZON_UK
             case .bedBath : return .BED_BATH_AND_BEYOND
@@ -139,19 +137,17 @@ public enum RetailerEnum: String {
             case .wegmans : return .WEGMANS
             case .postmates: return .POSTMATES
         }
-            
-        
     }
     
     /// Converts a `RetailerEnum` value to its corresponding `BRAccountLinkingRetailer` representation.
     ///
     /// - Returns: The `BRAccountLinkingRetailer` associated with the `RetailerEnum` value.
-func toBRAccountLinkingRetailer() -> BRAccountLinkingRetailer? {
+    func toBRAccountLinkingRetailer() -> BRAccountLinkingRetailer {
         switch self{
             case .ACME_MARKETS : return .acmeMarkets
             case .ALBERTSONS : return .albertsons
             case .AMAZON : return .amazonBeta
-//            case .AMAZON_BETA : return .amazonBeta
+            case .AMAZON_BETA : return .amazonBeta
             case .AMAZON_CA : return .amazonBetaCA
             case .AMAZON_UK : return .amazonBetaUK
             case .BED_BATH_AND_BEYOND : return .bedBath
@@ -172,7 +168,6 @@ func toBRAccountLinkingRetailer() -> BRAccountLinkingRetailer? {
             case .FRED_MEYER : return .fredMeyer
             case .GAP : return .gap
             case .GIANT_EAGLE : return .giantEagle
-            case .GMAIL : return nil
             case .GRUBHUB : return .grubhub
             case .HARRIS_TEETER : return .harrisTeeter
             case .HEB : return .HEB
@@ -210,77 +205,6 @@ func toBRAccountLinkingRetailer() -> BRAccountLinkingRetailer? {
             case .WALMART_CA : return .walmartCA
             case .WEGMANS : return .wegmans
             case .POSTMATES: return .postmates
-
-        }
-    }
-    /// Converts a `BRAccountLinkingRetailer` value to its corresponding `RetailerEnum` representation.
-    ///
-    /// - Parameter retailer: The `BRAccountLinkingRetailer` value to convert.
-    /// - Returns: The raw string value of the `RetailerEnum` associated with the `BRAccountLinkingRetailer`, or `nil` if not found.
-    func toString() -> String? {
-        switch self{
-        case .ACME_MARKETS : return "ACME_MARKETS"
-        case .ALBERTSONS : return "ALBERTSONS"
-        case .AMAZON : return "AMAZON"
-//        case .AMAZON_BETA : return "AMAZON_BETA"
-        case .AMAZON_CA : return "AMAZON_CA"
-        case .AMAZON_UK : return "AMAZON_UK"
-        case .BED_BATH_AND_BEYOND : return "BED_BATH_AND_BEYOND"
-        case .BESTBUY : return "BESTBUY"
-        case .BJS_WHOLESALE : return "BJS_WHOLESALE"
-        case .CHEWY : return "CHEWY"
-        case .COSTCO : return "COSTCO"
-        case .CVS : return "CVS"
-        case .DICKS_SPORTING_GOODS : return "DICKS_SPORTING_GOODS"
-        case .DOLLAR_GENERAL : return "DOLLAR_GENERAL"
-        case .DOLLAR_TREE : return "DOLLAR_TREE"
-        case .DOMINOS_PIZZA : return "DOMINOS_PIZZA"
-        case .DOOR_DASH : return "DOOR_DASH"
-        case .DRIZLY : return "DRIZLY"
-        case .FAMILY_DOLLAR : return "FAMILY_DOLLAR"
-        case .FOOD_4_LESS : return "FOOD_4_LESS"
-        case .FOOD_LION : return "FOOD_LION"
-        case .FRED_MEYER : return "FRED_MEYER"
-        case .GAP : return "GAP"
-        case .GIANT_EAGLE : return "GIANT_EAGLE"
-        case .GMAIL : return nil
-        case .GRUBHUB : return "GRUBHUB"
-        case .HARRIS_TEETER : return "HARRIS_TEETER"
-        case .HEB : return "HEB"
-        case .HOME_DEPOT : return "HOME_DEPOT"
-        case .HYVEE : return "HYVEE"
-        case .INSTACART : return "INSTACART"
-        case .JEWEL_OSCO : return "JEWEL_OSCO"
-        case .KOHLS : return "KOHLS"
-        case .KROGER : return "KROGER"
-        case .LOWES : return "LOWES"
-        case .MACYS : return "MACYS"
-        case .MARSHALLS : return "MARSHALLS"
-        case .MEIJER : return "MEIJER"
-        case .NIKE : return "NIKE"
-        case .PUBLIX : return "PUBLIX"
-        case .RALPHS : return "RALPHS"
-        case .RITE_AID : return  "RITE_AID"
-        case .SAFEWAY : return "SAFEWAY"
-        case .SAMS_CLUB : return "SAMS_CLUB"
-        case .SEAMLESS : return "SEAMLESS"
-        case .SEPHORA : return "SEPHORA"
-        case .SHIPT : return "SHIPT"
-        case .SHOPRITE : return "SHOPRITE"
-        case .SPROUTS : return "SPROUTS"
-        case .STAPLES : return "STAPLES"
-        case .STARBUCKS : return "STARBUCKS"
-        case .TACO_BELL : return "TACO_BELL"
-        case .TARGET : return "TARGET"
-        case .TJ_MAXX : return "TJ_MAXX"
-        case .UBER_EATS : return "UBER_EATS"
-        case .ULTA : return "ULTA"
-        case .VONS : return "VONS"
-        case .WALGREENS : return "WALGREENS"
-        case .WALMART : return "WALMART"
-        case .WALMART_CA : return "WALMART_CA"
-        case .WEGMANS : return "WEGMANS"
-        case .POSTMATES: return "POSTMATES"
         }
     }
 }

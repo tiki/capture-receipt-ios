@@ -112,14 +112,24 @@ public class CaptureReceipt {
     ///   - password: The password for the account.
     ///   - accountType: The type of account, e.g., Gmail or Retailer.
     ///   - onSuccess: A callback executed on successful login, providing the account information.
-    ///   - onError: A callback executed if there is an error during login, providing an Error object.
+    ///   - onError: A callback executed if there is an error during login, providing an error message.
     public static func login(
         username: String,
         password: String,
-        accountType: AccountCommon,
+        accountType: AccountType,
         onSuccess: @escaping (Account) -> Void,
-        onError: @escaping (Error) -> Void
-    ) {}
+        onError: @escaping (String) -> Void
+    ) {
+        switch(accountType){
+        case .retailer(let retailerEnum):
+            retailer!.login(username: username, password: password, retailer: retailerEnum, onError: {error in onError(error)}, onSuccess: { account in print(account)})
+            break
+        case .email(let emailEnum):
+            //email?.login(username: username, password: password, retailer: retailerEnum, onError: onError, onSuccess: onSuccess)
+            break
+        }
+        
+    }
     
     /// Retrieve a list of connected accounts.
     ///
@@ -150,7 +160,7 @@ public class CaptureReceipt {
     ///   - onError: A callback executed if there is an error during data retrieval, providing an Error object.
     ///   - onComplete: A callback executed when the data retrieval process is completed.
     public static func scrape(
-        accountType: AccountCommon,
+        accountType: AccountType,
         onReceipt: @escaping (Receipt) -> Void,
         onError: @escaping (Error) -> Void,
         onComplete: @escaping () -> Void

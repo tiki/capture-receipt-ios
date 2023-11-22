@@ -11,6 +11,9 @@ import CaptureReceipt
 struct RewardsExampleApp: App {
     
     @State var isInitialized = false
+    @State var startBtnEnabled = true
+    @State var username: String = ""
+    @State var password: String = ""
     
     var body: some Scene {
         WindowGroup {
@@ -34,36 +37,42 @@ struct RewardsExampleApp: App {
                     }
                 }
             }else{
-                Button(action: {
-                    CaptureReceipt.config(
-                        tikiPublishingID: "4a03c7fc-1533-48f4-b0e7-c34e49af91cf",
-                        microblinkLicenseKey: "sRwAAAAoY29tLm15dGlraS5zZGsuY2FwdHVyZS5yZWNlaXB0LmNhcGFjaXRvcgY6SQlVDCCrMOCc/jLI1A3BmOhqNvtZLzShMcb3/OLQLiqgWjuHuFiqGfg4fnAiPtRcc5uRJ6bCBRkg8EsKabMQkEsMOuVjvEOejVD497WkMgobMbk/X+bdfhPPGdcAHWn5Vnz86SmGdHX5xs6RgYe5jmJCSLiPmB7cjWmxY5ihkCG12Q==",
-                        productIntelligenceKey: "wSNX3mu+YGc/2I1DDd0NmrYHS6zS1BQt2geMUH7DDowER43JGeJRUErOHVwU2tz6xHDXia8BuvXQI3j37I0uYw==",
-                        terms: "terms for testing")
+              Text("Scan physical receipt")
+                .font(.system(size: 20, weight: .regular, design: .rounded))
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .onTapGesture {
                     Task{
-                        try? await CaptureReceipt.initialize(userId: "testUser123")
-                        isInitialized = true
+                        await CaptureReceipt.scan(
+                            onReceipt: { receipt in
+                                print(receipt)
+                            },
+                            onError: {error in
+                                print(error.localizedDescription)
+                            },
+                            onComplete: {
+                                print("done!")
+                            })
                     }
-                }) {
-                  Text("Scan")
-                            .font(.system(size: 20, weight: .regular, design: .rounded)).clipShape(RoundedRectangle(cornerRadius: 10))
-                            .onTapGesture {
-                                Task{
-                                    await CaptureReceipt.scan(
-                                        onReceipt: { receipt in
-                                            print(receipt)
-                                        },
-                                        onError: {error in
-                                            print(error.localizedDescription)
-                                        },
-                                        onComplete: {
-                                            print("done!")
-                                        })
-                                }
-                            }
+                }
+                TextField("enter user name", text: $username)
+                    .padding(10)
 
+                SecureField("enter a password", text: $password)
+                    .padding(10)
+              Text("Amazon Login")
+                    .font(.system(size: 20, weight: .regular, design: .rounded)).clipShape(RoundedRectangle(cornerRadius: 10))
+                    .onTapGesture {
+                        Task{
+                            CaptureReceipt.login(
+                                username: username,
+                                password: password,
+                                accountType: .retailer(.AMAZON),
+                                onSuccess: { account in print("amazon connected") },
+                                onError: {error in print("error \(error)") } )
+                        }
+                    }
                 }
             }
         }
     }
-}
+

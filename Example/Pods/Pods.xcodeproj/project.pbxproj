@@ -2997,7 +2997,6 @@
 		F465EC621640B0713635BA77C81FF4BC /* MSGraphAppliedConditionalAccessPolicy.h in Headers */ = {isa = PBXBuildFile; fileRef = A691FD35E1C10021631409A3E09DBC8F /* MSGraphAppliedConditionalAccessPolicy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F4687ACD8D93B7D966846AE899833FEB /* MSGraphWorkbookSortField.h in Headers */ = {isa = PBXBuildFile; fileRef = 431893F33CD39777FD0789062AB9E3D8 /* MSGraphWorkbookSortField.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F46931FF107C04DF8B5CD768A65F7E49 /* MSALResult.h in Headers */ = {isa = PBXBuildFile; fileRef = B6CC1E2A957B7330CCF80900D408BF48 /* MSALResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F4721A6E07F619C8F7AF43988227BEF2 /* AccountCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBABC1C7EA8CD69AB0EFFDE2741CF2A /* AccountCommon.swift */; };
 		F47472CCDEC92350EEADA19329AF8B81 /* MSGraphPlannerUserIds.h in Headers */ = {isa = PBXBuildFile; fileRef = 94AFC7577009C9BEBFC1530BE782EBD2 /* MSGraphPlannerUserIds.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F4788A154B42A32C32F2B73E67865965 /* MSGraphApplePushNotificationCertificate.h in Headers */ = {isa = PBXBuildFile; fileRef = 8FF788618EC3C76F1058FECD5BAC7DD8 /* MSGraphApplePushNotificationCertificate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F48B4CF14D62E0DD8C698C3E682012BA /* GIDMDMPasscodeState.h in Headers */ = {isa = PBXBuildFile; fileRef = 989208A08B73681EC426E0489A72FC28 /* GIDMDMPasscodeState.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -3042,7 +3041,7 @@
 		F7A766CD2CA7A76AB16A8C0432BB5D86 /* MSGraphTelecomExpenseManagementPartner.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AE4F9C24F66C4F07BB619368CA6DC0 /* MSGraphTelecomExpenseManagementPartner.m */; };
 		F7B7CE86D4C4F076618C64CC114C8B3E /* MSIDDefaultCredentialCacheKey.h in Headers */ = {isa = PBXBuildFile; fileRef = D13D78F49B69917821B070AB01ED02A8 /* MSIDDefaultCredentialCacheKey.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		F7CBB54609BD43ADA902A111CBB6C5BC /* MSIDMaskedLogParameter.h in Headers */ = {isa = PBXBuildFile; fileRef = 1216C87D3FF18DDBE79041091E531074 /* MSIDMaskedLogParameter.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		F7D184C54BED2A740B4AE61C1B5D4BEE /* AccountTypeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F7B7C03E4D292551D729992602BCC4 /* AccountTypeEnum.swift */; };
+		F7D184C54BED2A740B4AE61C1B5D4BEE /* AccountType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F7B7C03E4D292551D729992602BCC4 /* AccountType.swift */; };
 		F7D2140D1627D1EBBA3B792640736D90 /* MSGraphThumbnail.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3527FE8D391D8DAC668743FD4644E1 /* MSGraphThumbnail.m */; };
 		F7F29F7ACDD53B8FF68940D6250E0B38 /* MSGraphManagedMobileLobApp.h in Headers */ = {isa = PBXBuildFile; fileRef = 0235F2C3BEC592F29450680231C3044B /* MSGraphManagedMobileLobApp.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F80C5E1A6212B964F893AE4BB388F211 /* MSGraphWindowsStartMenuModeType.h in Headers */ = {isa = PBXBuildFile; fileRef = 45A69F7A277943886C299CA22402DA2F /* MSGraphWindowsStartMenuModeType.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -3662,7 +3661,7 @@
 		13C1999335064F48CCA4FB9448D1C667 /* MSIDSignoutWebRequestConfiguration.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MSIDSignoutWebRequestConfiguration.m; path = MSAL/IdentityCore/IdentityCore/src/configuration/webview/MSIDSignoutWebRequestConfiguration.m; sourceTree = "<group>"; };
 		13D951B775DA4C952DF1F75EB6B2F817 /* MSGraphWorkbookFilterDatetime.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MSGraphWorkbookFilterDatetime.m; path = GeneratedModels/MSGraphWorkbookFilterDatetime.m; sourceTree = "<group>"; };
 		13E3945413CFF4C1FCFF02586C5FD837 /* MSGraphAndroidWorkProfileCompliancePolicy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MSGraphAndroidWorkProfileCompliancePolicy.m; path = GeneratedModels/MSGraphAndroidWorkProfileCompliancePolicy.m; sourceTree = "<group>"; };
-		13F7B7C03E4D292551D729992602BCC4 /* AccountTypeEnum.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AccountTypeEnum.swift; sourceTree = "<group>"; };
+		13F7B7C03E4D292551D729992602BCC4 /* AccountType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AccountType.swift; sourceTree = "<group>"; };
 		1416C0B25B856FCE3D4271DCE8E1FA8C /* TikiSdkDebug */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TikiSdkDebug; path = TikiSdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1420941D4FF0C783D73F17EB11BCB669 /* MSIDMainThreadUtil.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MSIDMainThreadUtil.m; path = MSAL/IdentityCore/IdentityCore/src/webview/MSIDMainThreadUtil.m; sourceTree = "<group>"; };
 		1430D70BC49970F99C44553AA52689EC /* ReqLicenseLatest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReqLicenseLatest.swift; path = TikiSdk/Trail/req/ReqLicenseLatest.swift; sourceTree = "<group>"; };
@@ -5790,7 +5789,6 @@
 		BF79A3617343AE7241FE1787094B7F44 /* MSGraphProcessIntegrityLevel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MSGraphProcessIntegrityLevel.m; path = GeneratedModels/MSGraphProcessIntegrityLevel.m; sourceTree = "<group>"; };
 		BF9B23828FD0B628D96EBB932DE896CA /* MSGraphWindowsUpdateScheduledInstall.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MSGraphWindowsUpdateScheduledInstall.h; path = GeneratedModels/MSGraphWindowsUpdateScheduledInstall.h; sourceTree = "<group>"; };
 		BFB5187434405E9047E110EE3481F222 /* MSGraphToneInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MSGraphToneInfo.h; path = GeneratedModels/MSGraphToneInfo.h; sourceTree = "<group>"; };
-		BFBABC1C7EA8CD69AB0EFFDE2741CF2A /* AccountCommon.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AccountCommon.swift; sourceTree = "<group>"; };
 		BFC4A843527D3A13397F5387486EB2E3 /* OIDAuthState.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OIDAuthState.m; path = Source/AppAuthCore/OIDAuthState.m; sourceTree = "<group>"; };
 		BFCBE40A3E2F8C07B1DC52E8025174CE /* MSGraphEnablement.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MSGraphEnablement.m; path = GeneratedModels/MSGraphEnablement.m; sourceTree = "<group>"; };
 		BFCE44E71FBF2BEB495EB7DB6ED9D826 /* MSGraphCustomTimeZone.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MSGraphCustomTimeZone.h; path = GeneratedModels/MSGraphCustomTimeZone.h; sourceTree = "<group>"; };
@@ -8249,8 +8247,7 @@
 			isa = PBXGroup;
 			children = (
 				428321D86CD94310858D3B6F1481EBCF /* Account.swift */,
-				BFBABC1C7EA8CD69AB0EFFDE2741CF2A /* AccountCommon.swift */,
-				13F7B7C03E4D292551D729992602BCC4 /* AccountTypeEnum.swift */,
+				13F7B7C03E4D292551D729992602BCC4 /* AccountType.swift */,
 			);
 			name = Account;
 			path = CaptureReceipt/Classes/Account;
@@ -14221,9 +14218,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				20E6287F2CDBBA9D6771C151FD393124 /* Account.swift in Sources */,
-				F4721A6E07F619C8F7AF43988227BEF2 /* AccountCommon.swift in Sources */,
 				8C4544502B07A6460094A781 /* PhysicalScanCallbacks.swift in Sources */,
-				F7D184C54BED2A740B4AE61C1B5D4BEE /* AccountTypeEnum.swift in Sources */,
+				F7D184C54BED2A740B4AE61C1B5D4BEE /* AccountType.swift in Sources */,
 				5D30318C53E012FA58FB2D054FDC8FCF /* CaptureReceipt.swift in Sources */,
 				BAF22E1A7C3F61283CAA1221198E4E63 /* CaptureReceipt-dummy.m in Sources */,
 				C05F5A199B9FA7AB8CBC3E8E0A277125 /* Configuration.swift in Sources */,

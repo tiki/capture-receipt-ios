@@ -6,11 +6,7 @@
 import Foundation
 
 /// An enumeration representing different types of user accounts.
-public enum AccountTypeEnum {
-    /// Indicates an email account type.
-    case email
-    /// Indicates a retailer account type.
-    case retailer
-    /// Indicates a none account type.
-    case none
+public enum AccountType {
+    case retailer(RetailerEnum)
+    case email(EmailEnum)
 }
