@@ -40,7 +40,7 @@ public class Retailer {
         connection.configuration.returnLatestOrdersOnly = true
         connection.configuration.countryCode = "US"
         let error = BRAccountLinkingManager.shared().linkRetailer(with: connection)
-        if (error == .none) {
+        if (error == .none || error == .accountLinkedAlready) {
             let account = Account(accountType: .retailer(retailer), user: username, password: nil, isVerified: true)
             DispatchQueue.main.async{
                 BRAccountLinkingManager.shared().verifyRetailer(with: connection, withCompletion: {
@@ -50,12 +50,7 @@ public class Retailer {
                 })
             }
         }else {
-            if(error == .accountLinkedAlready){
-                let rets = BRAccountLinkingManager.shared().getLinkedRetailers()
-                BRAccountLinkingManager.shared().unlinkAccount(for: .amazon, withCompletion: {
-                    self.login(username: username, password: password, retailer: retailer, onError: { error in print(error) }, onSuccess: onSuccess)
-                })
-            }
+            onError("Error in retailer connection")
         }
     }
     /// Logs out a user account.
