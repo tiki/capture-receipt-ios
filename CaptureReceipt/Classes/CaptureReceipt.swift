@@ -125,7 +125,7 @@ public class CaptureReceipt {
             retailer!.login(username: username, password: password, retailer: retailerEnum, onError: {error in onError(error)}, onSuccess: { account in print(account)})
             break
         case .email(let emailEnum):
-            //email?.login(username: username, password: password, retailer: retailerEnum, onError: onError, onSuccess: onSuccess)
+            email!.login(username: username, password: password, provider: emailEnum, onError: onError, onSuccess: onSuccess)
             break
         }
         

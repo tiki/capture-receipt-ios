@@ -37,29 +37,29 @@ struct RewardsExampleApp: App {
                     }
                 }
             }else{
-              Text("Scan physical receipt")
-                .font(.system(size: 20, weight: .regular, design: .rounded))
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                .onTapGesture {
-                    Task{
-                        await CaptureReceipt.scan(
-                            onReceipt: { receipt in
-                                print(receipt)
-                            },
-                            onError: {error in
-                                print(error.localizedDescription)
-                            },
-                            onComplete: {
-                                print("done!")
-                            })
+                Text("Scan physical receipt")
+                    .font(.system(size: 20, weight: .regular, design: .rounded))
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .onTapGesture {
+                        Task{
+                            await CaptureReceipt.scan(
+                                onReceipt: { receipt in
+                                    print(receipt)
+                                },
+                                onError: {error in
+                                    print(error.localizedDescription)
+                                },
+                                onComplete: {
+                                    print("done!")
+                                })
+                        }
                     }
-                }
                 TextField("enter user name", text: $username)
                     .padding(10)
-
+                
                 SecureField("enter a password", text: $password)
                     .padding(10)
-              Text("Amazon Login")
+                Text("Amazon Login")
                     .font(.system(size: 20, weight: .regular, design: .rounded)).clipShape(RoundedRectangle(cornerRadius: 10))
                     .onTapGesture {
                         Task{
@@ -71,8 +71,21 @@ struct RewardsExampleApp: App {
                                 onError: {error in print("error \(error)") } )
                         }
                     }
-                }
+                Text("Gmail Login")
+                    .font(.system(size: 20, weight: .regular, design: .rounded)).clipShape(RoundedRectangle(cornerRadius: 10))
+                    .onTapGesture {
+                        Task{
+                            CaptureReceipt.login(
+                                username: username,
+                                password: password,
+                                accountType: .email(.GMAIL),
+                                onSuccess: { account in print("gmail connected") },
+                                onError: {error in print("error \(error)") } )
+                        }
+                    }
             }
+            
         }
     }
+}
 

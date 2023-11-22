@@ -41,7 +41,7 @@ public class Retailer {
         connection.configuration.countryCode = "US"
         let error = BRAccountLinkingManager.shared().linkRetailer(with: connection)
         if (error == .none || error == .accountLinkedAlready) {
-            let account = Account(accountType: .retailer(retailer), user: username, password: nil, isVerified: true)
+            let account = Account(accountType: .retailer(retailer), user: username, isVerified: true)
             DispatchQueue.main.async{
                 BRAccountLinkingManager.shared().verifyRetailer(with: connection, withCompletion: {
                     error, viewController, sessionId in
@@ -127,7 +127,7 @@ public class Retailer {
                 let retailer = BRAccountLinkingRetailer(rawValue: ret.uintValue)!
                 let connection =  BRAccountLinkingManager.shared().getLinkedRetailerConnection(retailer)
                 let accountType: AccountType = .retailer(RetailerEnum.fromBRAccountLinkingRetailer(retailer))
-                let account = Account(accountType: accountType, user: connection!.username!, password: connection!.password!, isVerified: true)
+                let account = Account(accountType: accountType, user: connection!.username!, isVerified: true)
                 onAccount(account)
             }
             onComplete()
