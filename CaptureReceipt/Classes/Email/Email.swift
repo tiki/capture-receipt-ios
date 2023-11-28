@@ -75,11 +75,11 @@ public class Email {
     ///   - onError: A closure to handle error messages.
     ///   - onComplete: A closure to handle completion actions.
     ///   - account: An optional instance of the Account struct containing user and account information.
-    public func logout(onError: @escaping (String) -> Void, onComplete: @escaping () -> Void, account: Account? = nil){
+    public func logout(onError: @escaping (String) -> Void, onComplete: @escaping () -> Void, account: String? = nil){
         if(account != nil){
             let linkedAccounts = BREReceiptManager.shared().getLinkedAccounts()
             if(linkedAccounts != nil && !linkedAccounts!.isEmpty){
-                let email = linkedAccounts!.first(where: { acc in acc.email == account!.user })
+                let email = linkedAccounts!.first(where: { acc in acc.email == account })
                 BREReceiptManager.shared().signOut(from: email) { error in
                     if(error != nil){
                         onError(error.debugDescription)
@@ -132,9 +132,8 @@ public class Email {
     public func accounts(onError: (String) -> Void, onAccount: (Account) -> Void,  onComplete: () -> Void) {
         let linkedAccounts = BREReceiptManager.shared().getLinkedAccounts()
         linkedAccounts?.forEach{ brAccount in
-////            let account = Account())
-//            account.isVerified = true
-//            onAccount(account)
+            var account = Account(accountType: .email(Account.fromEmailBrAccount(brEmailAccount: brAccount)), user: brAccount.email, isVerified: true)
+            onAccount(account)
         }
         onComplete()
     }

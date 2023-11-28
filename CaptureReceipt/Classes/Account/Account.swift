@@ -11,10 +11,10 @@ import BlinkEReceipt
 
 /// A Swift class representing an account, which can be of different types, such as email or retailer.
 public class Account {
-    /// The type of the account, such as email or retailer, represented by an AccountType object.
-    let accountType: AccountType
     /// The username associated with the account.
-    let user: String
+    let username: String
+    /// The type of the account, such as email or retailer, represented by an AccountType object.
+    let provider: AccountType
     /// A flag indicating whether the account has been verified (optional).
     var isVerified: Bool?
     
@@ -25,8 +25,30 @@ public class Account {
     ///   - user: The username associated with the account.
     ///   - isVerified: A flag indicating whether the account has been verified (optional).
     init(accountType: AccountType, user: String, isVerified: Bool?) {
-        self.accountType = accountType
-        self.user = user
+        self.provider = accountType
+        self.username = user
         self.isVerified = isVerified ?? false
+    }
+    
+    public static func fromEmailBrAccount(brEmailAccount: BREmailAccount) -> EmailEnum{
+        switch (brEmailAccount.provider) {
+        case .none:
+            break
+        case .gmail:
+            return .GMAIL
+        case .outlook:
+            return .OUTLOOK
+        case .yahoo:
+            return .YAHOO
+        case .AOL:
+            return .AOL
+        case .gmailIMAP:
+            return .GMAIL
+        case .customIMAP:
+            return .CUSTOM
+        case .yahooV2:
+            return .YAHOO
+        }
+        return .NONE
     }
 }

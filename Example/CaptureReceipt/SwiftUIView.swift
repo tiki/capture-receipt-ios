@@ -83,6 +83,27 @@ struct RewardsExampleApp: App {
                                 onError: {error in print("error \(error)") } )
                         }
                     }
+                Text("Logout Amazon")
+                    .font(.system(size: 20, weight: .regular, design: .rounded)).clipShape(RoundedRectangle(cornerRadius: 10))
+                    .onTapGesture {
+                        Task{
+                            CaptureReceipt.logout(accountType: .retailer(.AMAZON), onSuccess: {print("Logout")},onError: {error in print("error \(error)") })
+                        }
+                    }
+                Text("Logout Gmail")
+                    .font(.system(size: 20, weight: .regular, design: .rounded)).clipShape(RoundedRectangle(cornerRadius: 10))
+                    .onTapGesture {
+                        Task{
+                            CaptureReceipt.logout(accountType: .email(.GMAIL), username: nil, onSuccess: {print("Logout")},onError: {error in print("error \(error)") })
+                        }
+                    }
+                Text("Accounts")
+                    .font(.system(size: 20, weight: .regular, design: .rounded)).clipShape(RoundedRectangle(cornerRadius: 10))
+                    .onTapGesture {
+                        Task{
+                            print(CaptureReceipt.accounts(onSuccess: {print("Accounts")}, onError: {error in print("error \(error)") }))
+                        }
+                    }
             }
             
         }
