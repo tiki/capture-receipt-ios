@@ -104,6 +104,14 @@ struct RewardsExampleApp: App {
                             print(CaptureReceipt.accounts(onSuccess: {print("Accounts")}, onError: {error in print("error \(error)") }))
                         }
                     }
+                Text("Scan")
+                    .font(.system(size: 20, weight: .regular, design: .rounded)).clipShape(RoundedRectangle(cornerRadius: 10))
+                    .onTapGesture {
+                        Task{
+                            print("ScanStart")
+                            CaptureReceipt.scrape(onReceipt: {receipt in print(receipt)}, onError: {error in print("error \(error)") }, onComplete: {print("Scan")})
+                        }
+                    }
             }
             
         }

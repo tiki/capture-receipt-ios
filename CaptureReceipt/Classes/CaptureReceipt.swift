@@ -1,4 +1,5 @@
 import TikiSdk
+import BlinkReceipt
 
 /// The Capture Receipt SDK provides methods to interact with the TIKI Capture Receipt SDK for Android.
 public class CaptureReceipt {
@@ -172,14 +173,17 @@ public class CaptureReceipt {
     /// - Parameters:
     ///   - accountType: The type of account for which to retrieve receipt data.
     ///   - onReceipt: A callback executed for each retrieved receipt, providing the retrieved Receipt object.
-    ///   - onError: A callback executed if there is an error during data retrieval, providing an Error object.
+    ///   - onError: A callback executed if there is an error during data retrieval, providing an Error String.
     ///   - onComplete: A callback executed when the data retrieval process is completed.
     public static func scrape(
         accountType: AccountType,
-        onReceipt: @escaping (Receipt) -> Void,
-        onError: @escaping (Error) -> Void,
+        onReceipt: @escaping (BRScanResults) -> Void,
+        onError: @escaping (String) -> Void,
         onComplete: @escaping () -> Void
-    ) {}
+    ) {
+        retailer?.orders(onError: {error in onError(error)}, onReceipt: {receipt in onReceipt(receipt)}, onComplete: onComplete)
+        
+    }
     
     /// Retrieve digital receipt data for a specific account.
     ///
@@ -192,10 +196,14 @@ public class CaptureReceipt {
     ///   - onComplete: A callback executed upon the completion of the data retrieval process.
     public static func scrape(
         account: Account,
-        onReceipt: @escaping (Receipt) -> Void,
-        onError: @escaping (Error) -> Void,
+        onReceipt: @escaping (BRScanResults) -> Void,
+        onError: @escaping (String) -> Void,
         onComplete: @escaping () -> Void
-    ) {}
+    ) {
+        retailer?.orders(onError: {error in onError(error)}, onReceipt: {receipt in onReceipt(receipt)}, onComplete: onComplete)
+        email?.scan(onError: {error in onError(error)}, onReceipt: {receipt in onReceipt(receipt)}, onComplete: onComplete)
+
+    }
     
     /// Retrieve digital receipt data for all connected accounts.
     ///
@@ -206,10 +214,13 @@ public class CaptureReceipt {
     ///   - onError: A callback executed in case of an error during data retrieval, providing an Error object.
     ///   - onComplete: A callback executed upon the completion of the data retrieval process.
     public static func scrape(
-        onReceipt: @escaping (Receipt) -> Void,
-        onError: @escaping (Error) -> Void,
+        onReceipt: @escaping (BRScanResults) -> Void,
+        onError: @escaping (String) -> Void,
         onComplete: @escaping () -> Void
-    ) {}
+    ) {
+        retailer?.orders(onError: {error in onError(error)}, onReceipt: {receipt in onReceipt(receipt)}, onComplete: onComplete)
+        email?.scan(onError: {error in onError(error)}, onReceipt: {receipt in onReceipt(receipt)}, onComplete: onComplete)
+    }
     
     private static func publish(
         _ receipt: Receipt,
