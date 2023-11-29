@@ -22,7 +22,7 @@ struct RewardsExampleApp: App {
                     CaptureReceipt.config(
                         tikiPublishingID: "4a03c7fc-1533-48f4-b0e7-c34e49af91cf",
                         microblinkLicenseKey: "sRwAAAEaY29tLm15dGlraS5jYXB0dXJlLnJlY2VpcHRuGv//0KdCFBQgFSNOuVduGfcqT3S6jLuPoAoP5bngYkX32/19dPBW2zVYisI6sB8SjLy9dgepoVdIs6sCZZPy7uWIcGKfdSGx8vgrEzd/phAThD+5mfJ6DTn/0eDRoFDn1/siDikIwWpsxJSRkjGBQysdOKmlhTtWHUHeNGwvAVrl6T64+Q==",
-                        productIntelligenceKey: "",
+                        productIntelligenceKey: "wSNX3mu+YGc/2I1DDd0NmrYHS6zS1BQt2geMUH7DDowER43JGeJRUErOHVwU2tz6xHDXia8BuvXQI3j37I0uYw==",
                         terms: "terms for testing")
                     Task{
                         try? await CaptureReceipt.initialize(userId: "testUser123")
@@ -110,6 +110,14 @@ struct RewardsExampleApp: App {
                         Task{
                             print("ScanStart")
                             CaptureReceipt.scrape(onReceipt: {receipt in print(receipt)}, onError: {error in print("error \(error)") }, onComplete: {print("Scan")})
+                        }
+                    }
+                Text("Scan Account")
+                    .font(.system(size: 20, weight: .regular, design: .rounded)).clipShape(RoundedRectangle(cornerRadius: 10))
+                    .onTapGesture {
+                        Task{
+                            print("ScanStart")
+                            CaptureReceipt.scrape(account: Account.init(accountType: .email(.GMAIL), user: "jessemonteiroferreira@gmail.com", isVerified: true),onReceipt: {receipt in print(receipt)}, onError: {error in print("error \(error)") }, onComplete: {print("Scan")})
                         }
                     }
             }

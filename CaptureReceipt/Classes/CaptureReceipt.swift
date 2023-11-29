@@ -181,7 +181,13 @@ public class CaptureReceipt {
         onError: @escaping (String) -> Void,
         onComplete: @escaping () -> Void
     ) {
-        retailer?.orders(onError: {error in onError(error)}, onReceipt: {receipt in onReceipt(receipt)}, onComplete: onComplete)
+        switch(accountType){
+        case .retailer(_):
+            retailer?.orders(retailer: nil, onError: {error in onError(error)}, onReceipt: {receipt in onReceipt(receipt)}, onComplete: onComplete)
+        case .email(_):
+            email?.scan(onError: {error in onError(error)}, onReceipt: {receipt in onReceipt(receipt)}, onComplete: onComplete)
+        }
+
         
     }
     
@@ -200,8 +206,12 @@ public class CaptureReceipt {
         onError: @escaping (String) -> Void,
         onComplete: @escaping () -> Void
     ) {
-        retailer?.orders(onError: {error in onError(error)}, onReceipt: {receipt in onReceipt(receipt)}, onComplete: onComplete)
-        email?.scan(onError: {error in onError(error)}, onReceipt: {receipt in onReceipt(receipt)}, onComplete: onComplete)
+        switch(account.provider){
+        case .retailer(let retailerEnum):
+            retailer?.orders(retailer: retailerEnum, onError: {error in onError(error)}, onReceipt: {receipt in onReceipt(receipt)}, onComplete: onComplete)
+        case .email(_):
+            email?.scanAccount(account: account, onError: {error in onError(error)}, onReceipt: {receipt in onReceipt(receipt)}, onComplete: onComplete)
+        }
 
     }
     
@@ -218,7 +228,7 @@ public class CaptureReceipt {
         onError: @escaping (String) -> Void,
         onComplete: @escaping () -> Void
     ) {
-        retailer?.orders(onError: {error in onError(error)}, onReceipt: {receipt in onReceipt(receipt)}, onComplete: onComplete)
+        retailer?.orders(retailer: nil, onError: {error in onError(error)}, onReceipt: {receipt in onReceipt(receipt)}, onComplete: onComplete)
         email?.scan(onError: {error in onError(error)}, onReceipt: {receipt in onReceipt(receipt)}, onComplete: onComplete)
     }
     

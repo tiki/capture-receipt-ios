@@ -105,22 +105,59 @@ public class Email {
     ///   - onComplete: A closure to handle completion actions.
     public func scan(onError: @escaping (String) -> Void, onReceipt: @escaping (BRScanResults) -> Void, onComplete: @escaping () -> Void) {
         BREReceiptManager.shared().dayCutoff = getDayCutOff()
-        Task(priority: .high){
-            BREReceiptManager.shared().getEReceipts() {scanResults, emailAccount, error in
-                guard let receivedError = error as? BREReceiptIMAPError else {
-                    if(scanResults != nil){
-                        scanResults!.forEach{scanResults in
-                            onReceipt(scanResults)
-                        }
+        DispatchQueue.main.async {
+            BREReceiptManager.shared().getEReceipts(completion: {scanResults, emailAccount, error in
+                if(scanResults != nil){
+                    scanResults!.forEach{scanResults in
+                        onReceipt(scanResults)
                     }
-                    self.defaults.set(Date(), forKey: "lastIMAPScan")
-                    onComplete()
-                    return
                 }
+                self.defaults.set(Date(), forKey: "lastIMAPScan")
+                onComplete()
                 onError(error.debugDescription)
-
-            } 
+                
+            })
         }
+        
+    }
+    /// Retrieves e-receipts for an user email account
+    ///
+    /// - Parameters:
+    ///   - onError: A closure to handle error messages.
+    ///   - onReceipt: A closure to handle individual receipt results.
+    ///   - onComplete: A closure to handle completion actions.
+    public func scanAccount(account: Account, onError: @escaping (String) -> Void, onReceipt: @escaping (BRScanResults) -> Void, onComplete: @escaping () -> Void) {
+        Task(priority: .high) {
+            BREReceiptManager.shared().dayCutoff = getDayCutOff()
+            var accountToSearch: BREmailAccount? = nil
+            let linkedAccounts = BREReceiptManager.shared().getLinkedAccounts()
+            for acc in linkedAccounts! {
+                if(acc.email == account.username) {
+                    accountToSearch = acc
+                }
+            }
+            if(accountToSearch == nil)  {
+                onError("Account not Linked")
+            }else{
+                BREReceiptManager.shared().getEReceipts(for: accountToSearch, withCompletion: {scanResults, emailAccount, error in
+                    guard let receivedError = error as? BREReceiptIMAPError else {
+                        if(scanResults != nil){
+                            scanResults!.forEach{scanResults in
+                                onReceipt(scanResults)
+                            }
+                        }
+                        self.defaults.set(Date(), forKey: "lastIMAPScan")
+                        onComplete()
+                        return
+                    }
+                    onError(error.debugDescription)
+
+                })
+                
+            }
+        }
+
+
     }
     
     /// Retrieves a list of linked email accounts.

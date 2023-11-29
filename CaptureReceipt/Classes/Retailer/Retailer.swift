@@ -89,15 +89,11 @@ public class Retailer {
     ///   - onError: A closure to handle error messages.
     ///   - onReceipt: A closure to handle individual receipt results.
     ///   - onComplete: A closure to handle the completion of the order retrieval process.
-    public func orders(onError: @escaping (String) -> Void, onReceipt: @escaping(BRScanResults) -> Void, onComplete: @escaping () -> Void){
+    public func orders(retailer: RetailerEnum?, onError: @escaping (String) -> Void, onReceipt: @escaping(BRScanResults) -> Void, onComplete: @escaping () -> Void){
         Task(priority: .high) {
-            let retailers = BRAccountLinkingManager.shared().getLinkedRetailers()
-            for ret in retailers {
-                guard let retailerId = BRAccountLinkingRetailer(rawValue: UInt(truncating: ret)) else{
-                    continue
-                }
+            if(retailer != nil) {
                 DispatchQueue.main.async {
-                    BRAccountLinkingManager.shared().grabNewOrders( for: retailerId)  { retailer, order, remaining, viewController, errorCode, sessionId in
+                    BRAccountLinkingManager.shared().grabNewOrders( for: retailer!.toBRAccountLinkingRetailer())  { retailer, order, remaining, viewController, errorCode, sessionId in
                         if(errorCode == .none && order != nil){
                             onReceipt(order!)
                             print(order!)
@@ -108,8 +104,28 @@ public class Retailer {
 
                     }
                 }
-                
+            }else{
+                let retailers = BRAccountLinkingManager.shared().getLinkedRetailers()
+                for ret in retailers {
+                    guard let retailerId = BRAccountLinkingRetailer(rawValue: UInt(truncating: ret)) else{
+                        continue
+                    }
+                    DispatchQueue.main.async {
+                        BRAccountLinkingManager.shared().grabNewOrders( for: retailerId)  { retailer, order, remaining, viewController, errorCode, sessionId in
+                            if(errorCode == .none && order != nil){
+                                onReceipt(order!)
+                                print(order!)
+                            }
+                            if(remaining == 0){
+                                onComplete()
+                            }
+
+                        }
+                    }
+                    
+                }
             }
+
         }
     }
     
