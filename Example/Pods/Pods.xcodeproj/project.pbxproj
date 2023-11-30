@@ -1669,6 +1669,19 @@
 		888A86B6290CE0FEB262430254CBD971 /* MSIDIndividualClaimRequestAdditionalInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 87CA3E52ED26F106E42A811C783CCEA6 /* MSIDIndividualClaimRequestAdditionalInfo.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		8892998F9AC05C7BA35A007129C17EB8 /* GTLRGmailQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 802A3D6831AB6EFA303869AFA077E273 /* GTLRGmailQuery.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		889B1F64E930E24EFE323615E851770C /* MSGraphEdgeSearchEngineType.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C813BADA74EA1DFE220C1443534E7E /* MSGraphEdgeSearchEngineType.m */; };
+		88AC084E2B17BD7000864F73 /* JSAdditionalLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AC084D2B17BD7000864F73 /* JSAdditionalLine.swift */; };
+		88AC08502B17BDB100864F73 /* JSStringType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AC084F2B17BDB100864F73 /* JSStringType.swift */; };
+		88AC08522B17BDFA00864F73 /* JSCoupon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AC08512B17BDFA00864F73 /* JSCoupon.swift */; };
+		88AC08542B17BE1B00864F73 /* JSFloatType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AC08532B17BE1B00864F73 /* JSFloatType.swift */; };
+		88AC08562B17BE4800864F73 /* JSPaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AC08552B17BE4800864F73 /* JSPaymentMethod.swift */; };
+		88AC08582B17BE7500864F73 /* JSProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AC08572B17BE7500864F73 /* JSProduct.swift */; };
+		88AC085A2B17BE9E00864F73 /* JSPromotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AC08592B17BE9E00864F73 /* JSPromotion.swift */; };
+		88AC085C2B17BF0A00864F73 /* JSRetailer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AC085B2B17BF0A00864F73 /* JSRetailer.swift */; };
+		88AC085E2B17BF3300864F73 /* JSShipment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AC085D2B17BF3300864F73 /* JSShipment.swift */; };
+		88AC08602B17BF6100864F73 /* JSSurvey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AC085F2B17BF6100864F73 /* JSSurvey.swift */; };
+		88AC08622B17BFAC00864F73 /* JSSurveyAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AC08612B17BFAC00864F73 /* JSSurveyAnswer.swift */; };
+		88AC08642B17BFF400864F73 /* JSSurveyQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AC08632B17BFF400864F73 /* JSSurveyQuestion.swift */; };
+		88AC08662B17C02000864F73 /* JSSurveyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AC08652B17C02000864F73 /* JSSurveyResponse.swift */; };
 		88C2E44D71B9E098129321F17E48AA88 /* MSIDLogger+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 45DD3C4AC4385A6E6CB5B172E8B74A0F /* MSIDLogger+Internal.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		88DBE1742F46A1DF7E78D7960186444C /* MSIDGeneralCacheItemType.m in Sources */ = {isa = PBXBuildFile; fileRef = B886A3FD8858EC56F37B41A5C42E834A /* MSIDGeneralCacheItemType.m */; };
 		88FFB7CD8A4425E9FE67F4E2CE927858 /* MSGraphLocationConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6786144381F370B72B9C37C565C947 /* MSGraphLocationConstraint.m */; };
@@ -5102,6 +5115,19 @@
 		883692DAD59891971D9046DC0924584A /* MSAL.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MSAL.h; path = MSAL/src/public/MSAL.h; sourceTree = "<group>"; };
 		8853ADAC03020BD26DE19AC6B2E714F3 /* MSIDLegacyTokenRequestProvider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MSIDLegacyTokenRequestProvider.h; path = MSAL/IdentityCore/IdentityCore/src/requests/sdk/adal/MSIDLegacyTokenRequestProvider.h; sourceTree = "<group>"; };
 		8855DC6599AE576F2D8F9EF1DC44C664 /* MSGraphUser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MSGraphUser.m; path = GeneratedModels/MSGraphUser.m; sourceTree = "<group>"; };
+		88AC084D2B17BD7000864F73 /* JSAdditionalLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSAdditionalLine.swift; sourceTree = "<group>"; };
+		88AC084F2B17BDB100864F73 /* JSStringType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSStringType.swift; sourceTree = "<group>"; };
+		88AC08512B17BDFA00864F73 /* JSCoupon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSCoupon.swift; sourceTree = "<group>"; };
+		88AC08532B17BE1B00864F73 /* JSFloatType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSFloatType.swift; sourceTree = "<group>"; };
+		88AC08552B17BE4800864F73 /* JSPaymentMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSPaymentMethod.swift; sourceTree = "<group>"; };
+		88AC08572B17BE7500864F73 /* JSProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSProduct.swift; sourceTree = "<group>"; };
+		88AC08592B17BE9E00864F73 /* JSPromotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSPromotion.swift; sourceTree = "<group>"; };
+		88AC085B2B17BF0A00864F73 /* JSRetailer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSRetailer.swift; sourceTree = "<group>"; };
+		88AC085D2B17BF3300864F73 /* JSShipment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSShipment.swift; sourceTree = "<group>"; };
+		88AC085F2B17BF6100864F73 /* JSSurvey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSSurvey.swift; sourceTree = "<group>"; };
+		88AC08612B17BFAC00864F73 /* JSSurveyAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSSurveyAnswer.swift; sourceTree = "<group>"; };
+		88AC08632B17BFF400864F73 /* JSSurveyQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSSurveyQuestion.swift; sourceTree = "<group>"; };
+		88AC08652B17C02000864F73 /* JSSurveyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSSurveyResponse.swift; sourceTree = "<group>"; };
 		88DB73967E140EC836779DDB22895E29 /* MSGraphDeviceManagementTroubleshootingEvent.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MSGraphDeviceManagementTroubleshootingEvent.m; path = GeneratedModels/MSGraphDeviceManagementTroubleshootingEvent.m; sourceTree = "<group>"; };
 		88DF1E65FA5D05B6E5C1B838F40E49F7 /* MSGraphDateTimeTimeZone.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MSGraphDateTimeTimeZone.h; path = GeneratedModels/MSGraphDateTimeTimeZone.h; sourceTree = "<group>"; };
 		898BD4F80E4E26CA3244DECC16026A71 /* MSGraphResourceAction.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MSGraphResourceAction.m; path = GeneratedModels/MSGraphResourceAction.m; sourceTree = "<group>"; };
@@ -8332,6 +8358,19 @@
 			isa = PBXGroup;
 			children = (
 				7BD73D4868CF79DEDEAEF5487FB454B0 /* Receipt.swift */,
+				88AC084D2B17BD7000864F73 /* JSAdditionalLine.swift */,
+				88AC084F2B17BDB100864F73 /* JSStringType.swift */,
+				88AC08512B17BDFA00864F73 /* JSCoupon.swift */,
+				88AC08532B17BE1B00864F73 /* JSFloatType.swift */,
+				88AC08552B17BE4800864F73 /* JSPaymentMethod.swift */,
+				88AC08572B17BE7500864F73 /* JSProduct.swift */,
+				88AC08592B17BE9E00864F73 /* JSPromotion.swift */,
+				88AC085B2B17BF0A00864F73 /* JSRetailer.swift */,
+				88AC085D2B17BF3300864F73 /* JSShipment.swift */,
+				88AC085F2B17BF6100864F73 /* JSSurvey.swift */,
+				88AC08612B17BFAC00864F73 /* JSSurveyAnswer.swift */,
+				88AC08632B17BFF400864F73 /* JSSurveyQuestion.swift */,
+				88AC08652B17C02000864F73 /* JSSurveyResponse.swift */,
 			);
 			name = Receipt;
 			path = CaptureReceipt/Classes/Receipt;
@@ -14218,17 +14257,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				20E6287F2CDBBA9D6771C151FD393124 /* Account.swift in Sources */,
+				88AC084E2B17BD7000864F73 /* JSAdditionalLine.swift in Sources */,
 				8C4544502B07A6460094A781 /* PhysicalScanCallbacks.swift in Sources */,
+				88AC08522B17BDFA00864F73 /* JSCoupon.swift in Sources */,
+				88AC08502B17BDB100864F73 /* JSStringType.swift in Sources */,
 				F7D184C54BED2A740B4AE61C1B5D4BEE /* AccountType.swift in Sources */,
 				5D30318C53E012FA58FB2D054FDC8FCF /* CaptureReceipt.swift in Sources */,
+				88AC08662B17C02000864F73 /* JSSurveyResponse.swift in Sources */,
 				BAF22E1A7C3F61283CAA1221198E4E63 /* CaptureReceipt-dummy.m in Sources */,
 				C05F5A199B9FA7AB8CBC3E8E0A277125 /* Configuration.swift in Sources */,
+				88AC085A2B17BE9E00864F73 /* JSPromotion.swift in Sources */,
 				01E344FCFF6891EA72458A57C6C74092 /* Email.swift in Sources */,
 				15BFEA7B8FA907E7280173485C592982 /* EmailEnum.swift in Sources */,
+				88AC08602B17BF6100864F73 /* JSSurvey.swift in Sources */,
 				8C45444E2B079D610094A781 /* ScanResultDelegate.swift in Sources */,
 				28F7E860DFF4A165C1396735CFA13439 /* FormatDate.swift in Sources */,
+				88AC08542B17BE1B00864F73 /* JSFloatType.swift in Sources */,
 				C579A15800205DABE4488A2D899C74C9 /* Physical.swift in Sources */,
 				173882BCDA204C4E3C010BEEEFC05790 /* Receipt.swift in Sources */,
+				88AC08642B17BFF400864F73 /* JSSurveyQuestion.swift in Sources */,
+				88AC08582B17BE7500864F73 /* JSProduct.swift in Sources */,
+				88AC085C2B17BF0A00864F73 /* JSRetailer.swift in Sources */,
+				88AC085E2B17BF3300864F73 /* JSShipment.swift in Sources */,
+				88AC08562B17BE4800864F73 /* JSPaymentMethod.swift in Sources */,
+				88AC08622B17BFAC00864F73 /* JSSurveyAnswer.swift in Sources */,
 				3D018468AEEAA36932BA577241290629 /* Retailer.swift in Sources */,
 				3B4A32F78D452D718BD8B44D5CEFF714 /* RetailerEnum.swift in Sources */,
 			);

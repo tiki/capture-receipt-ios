@@ -24,7 +24,7 @@ public class Account {
     ///   - accountType: An AccountType object representing the type and source of the account.
     ///   - user: The username associated with the account.
     ///   - isVerified: A flag indicating whether the account has been verified (optional).
-    init(accountType: AccountType, user: String, isVerified: Bool?) {
+    public init(accountType: AccountType, user: String, isVerified: Bool?) {
         self.provider = accountType
         self.username = user
         self.isVerified = isVerified ?? false
