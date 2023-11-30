@@ -27,7 +27,7 @@ struct JSProduct: Encodable {
     /// The total price of the product, if available.
     private let totalPrice: JSFloatType?
     /// The full price of the product, if available.
-    private let fullPrice: JSFloatType?
+    private let fullPrice: Float?
     private let line: Int32
     /// The product name, if available.
     private let productName: String?
@@ -37,10 +37,11 @@ struct JSProduct: Encodable {
     private let category: String?
     /// The size of the product, if available.
     private let size: String?
-    private let rewardsGroup: String?
-    private let competitorRewardsGroup: String?
+//    private let rewardsGroup: String?
+//    private let competitorRewardsGroup: String?
     /// The UPC code for the product
     private let upc: String?
+    /// The URL of the product image, if available.
     /// The URL of the product image, if available.
     private let imageUrl: String?
     /// The shipping status of the product, if available.
@@ -66,7 +67,7 @@ struct JSProduct: Encodable {
     /// The category according to BlinkReceipt.
     private let blinkReceiptCategory: String?
 //    /// A map of extended fields associated with the product.
-    private let extendedFields: [String: String]?
+//    private let extendedFields: [String: String]?
     /// The fuel type of the product.
     private let fuelType: String?
     /// The description prefix, if available.
@@ -77,7 +78,7 @@ struct JSProduct: Encodable {
     private let skuPrefix: JSStringType?
     /// The SKU postfix, if available.
     private let skuPostfix: JSStringType?
-    private let attributes: [[String: String]]
+    private let attributes: [[String: String]]?
     /// The sector of the product.
     private let sector: String?
     /// The department of the product.
@@ -97,21 +98,30 @@ struct JSProduct: Encodable {
      */
     init(product: BRProduct) {
         productNumber = JSStringType.opt(stringType: product.productNumber)
-        description = JSStringType.opt(string: product.description)
+        description = JSStringType(stringType: product.productDescription)
         quantity = JSFloatType.opt(floatType: product.quantity)
         unitPrice = JSFloatType.opt(floatType: product.unitPrice)
-        unitOfMeasure = JSStringType.opt(stringType: product.unitOfMeasure)
+        unitOfMeasure = (JSStringType.opt(stringType: product.unitOfMeasure) != nil) ? JSStringType.opt(stringType: product.unitOfMeasure) : JSStringType(string: "")
         totalPrice = JSFloatType.opt(floatType: product.totalPrice)
-        fullPrice = JSFloatType.opt(floatType: product.fullPrice)
+        fullPrice = {
+            if(product.fullPrice == nil){
+                0
+            }else{
+                product.fullPrice.value
+            }
+        }()
+        line = 0
         productName = product.productName
         brand = product.brand
         category = product.category
         size = product.size
+//        rewardsGroup = product.rewards
+//        competitorRewardsGroup = product.competitorRewardsGroup
         upc = product.upc
         imageUrl = product.imgUrl
         shippingStatus = product.shippingStatus
         additionalLines = product.additionalLines?.map { additionalLine in JSAdditionalLine(additionalLine: additionalLine) } ?? []
-        priceAfterCoupons = JSFloatType.opt(floatType: product.priceAfterCoupons)
+        priceAfterCoupons = (JSFloatType.opt(floatType: product.priceAfterCoupons) != nil) ? JSFloatType.opt(floatType: product.priceAfterCoupons) : JSFloatType(float: 0)
         voided = product.isVoided
         probability = product.probability
         sensitive = product.isSensitive
@@ -128,10 +138,12 @@ struct JSProduct: Encodable {
 //            return ret
 //        }() : nil
         fuelType = product.fuelType
+//        line = product.line
         descriptionPrefix = JSStringType.opt(stringType: product.prodDescPrefix)
         descriptionPostfix = JSStringType.opt(stringType: product.prodDescPostfix)
         skuPrefix = JSStringType.opt(stringType: product.prodNumPrefix)
         skuPostfix = JSStringType.opt(stringType: product.prodNumPostfix)
+        attributes = product.attributes.map{attributes in attributes as! [[String : String]]}
         sector = product.sector
         department = product.department
         majorCategory = product.majorCategory

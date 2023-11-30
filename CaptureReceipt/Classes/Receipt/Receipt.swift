@@ -44,7 +44,7 @@ public class Receipt: Encodable{
     private let storeState: JSStringType?
     /// The store zip code, if available.
     private let storeZip: JSStringType?
-    private let storeZipCountry: JSStringType?
+//    private let storeZipCountry: JSStringType?
     /// The store phone number, if available.
     private let storePhone: JSStringType?
     /// The cashier's identifier, if available.
@@ -65,7 +65,6 @@ public class Receipt: Encodable{
     private let ocrConfidence: Float
     /// Indicates if the top edge of the receipt was found during processing.
     private let foundTopEdge: Bool?
-    private let merchantSource: String?
     /// Indicates if the bottom edge of the receipt was found during processing.
     private let foundBottomEdge: Bool?
     /// The eReceipt order number, if available.
@@ -74,7 +73,6 @@ public class Receipt: Encodable{
     private let eReceiptOrderStatus: String?
     /// The raw HTML content of the eReceipt, if available.
     private let eReceiptRawHtml: String?
-    private let eReceiptShippingAddress: String?
     /// An array of shipment information associated with the receipt.
     private let shipments: [JSShipment]
     /// The long transaction identifier, if available.
@@ -83,7 +81,6 @@ public class Receipt: Encodable{
     private let subtotalMatches: Bool?
     /// The email provider associated with the eReceipt, if available.
     private let eReceiptEmailProvider: String?
-    private let eReceiptEmailId: String?
     /// Indicates if the eReceipt was successfully authenticated.
     private let eReceiptAuthenticated: Bool?
     /// Indicates if the shopper is an Instacart shopper.
@@ -96,11 +93,10 @@ public class Receipt: Encodable{
     private let duplicate: Bool?
     /// Indicates if the receipt is fraudulent.
     private let fraudulent: Bool?
-    private let receiptDateTime: Int64?
     /// An array of duplicate BlinkReceipt IDs.
     private let duplicateBlinkReceiptIds: [String]
     /// A guess at the merchant's name.
-    private let merchantMatchGuess: JSStringType?
+    private let merchantMatchGuess: String?
     /// The number of products pending lookup.
     private let productsPendingLookup: Int
     /// An array of qualified promotions associated with the receipt.
@@ -108,18 +104,15 @@ public class Receipt: Encodable{
     /// An array of unqualified promotions associated with the receipt.
     private let unqualifiedPromotions: [JSPromotion]
     /// Extended fields of the receipt, if available.
-    private let extendedFields: [String: String]?
+//    private let extendedFields: [AnyHashable: Any]?
     /// Additional fees associated with the eReceipt, if available.
     private let eReceiptAdditionalFees: [String: String]?
     /// The purchase type, if available.
     private let purchaseType: JSStringType?
-    private let loyaltForBanner: Bool?
     /// The channel, if available.
     private let channel: JSStringType?
-    private let submitionDate: Int64?
     /// The entity that fulfilled the eReceipt, if available.
     private let eReceiptFulfilledBy: String?
-    private let eReceiptShippingStatus: String?
     /// The shipping status of the eReceipt.
     private let eReceiptPOSSystem: String?
     /// The sub-merchant associated with the eReceipt, if available.
@@ -137,7 +130,7 @@ public class Receipt: Encodable{
     /// The currency code, if available.
     private let currencyCode: String?
     /// The client's merchant name, if available.
-    private let clientMerchantName: String?
+    private let clientMerchantName: JSStringType?
     /// Indicates if the receipt is part of a loyalty program.
     private let loyaltyProgram: Bool?
     /// An array of merchant sources associated with the receipt.
@@ -158,7 +151,7 @@ public class Receipt: Encodable{
     init(scanResults: BRScanResults) {
         receiptDate = JSStringType.opt(stringType: scanResults.receiptDate)
         receiptTime = JSStringType.opt(stringType: scanResults.receiptTime)
-        retailer = JSRetailer(retailer: scanResults.retailerId)
+        retailerId = JSRetailer(retailer: scanResults.retailerId)
         products = scanResults.products?.map { product in JSProduct(product: product) } ?? []
         coupons = scanResults.coupons?.map { coupon in JSCoupon(coupon: coupon) } ?? []
         total = JSFloatType.opt(floatType: scanResults.total)
@@ -172,6 +165,7 @@ public class Receipt: Encodable{
         blinkReceiptId = scanResults.blinkReceiptId
         storeState = JSStringType.opt(stringType: scanResults.storeState)
         storeZip = JSStringType.opt(stringType: scanResults.storeZip)
+//        storeZipCountry = scanResults.storeZipCountry
         storePhone = JSStringType.opt(stringType: scanResults.storePhone)
         cashierId = JSStringType.opt(stringType: scanResults.cashierId)
         transactionId = JSStringType.opt(stringType: scanResults.transactionId)
@@ -193,7 +187,7 @@ public class Receipt: Encodable{
         eReceiptAuthenticated = scanResults.ereceiptAuthenticated
         instacartShopper = scanResults.isInstacartShopper
         eReceipt = scanResults.ereceiptIsValid
-//        eReceiptComponentEmails = scanResults.ereceiptComponentEmails?.map{ res in RspReceipt(requestId: requestId, scanResults: res)} ?? []
+        eReceiptComponentEmails = scanResults.ereceiptComponentEmails?.map{ res in Receipt(scanResults: res)} ?? []
         duplicate = scanResults.isDuplicate
         fraudulent = scanResults.isFraudulent
         duplicateBlinkReceiptIds = scanResults.duplicateBlinkReceiptIds ?? []
@@ -201,20 +195,8 @@ public class Receipt: Encodable{
         productsPendingLookup = scanResults.productsPendingLookup
         qualifiedPromotions = scanResults.qualifiedPromotions?.map { promotion in JSPromotion(promotion: promotion) } ?? []
         unqualifiedPromotions = scanResults.unqualifiedPromotions?.map { promotion in JSPromotion(promotion: promotion) } ?? []
-//        extendedFields = scanResults.extendedFields != nil ? {
-//            var ret = JSObject()
-//            scanResults.extendedFields!.forEach { (key: AnyHashable, value: Any) in
-//                ret.updateValue(value as! any JSValue, forKey: key as! String)
-//            }
-//            return ret
-//        }() : nil
-//        eReceiptAdditionalFees = scanResults.ereceiptAdditionalFees != nil ? {
-//            var ret = JSObject()
-//            scanResults.ereceiptAdditionalFees!.forEach { (key: String, value: String) in
-//                ret.updateValue(value, forKey: key)
-//            }
-//            return ret
-//        }() : nil
+//        extendedFields = scanResults.extendedFields
+        eReceiptAdditionalFees = scanResults.ereceiptAdditionalFees
         purchaseType = JSStringType.opt(string: scanResults.purchaseType)
         channel = JSStringType.opt(stringType: scanResults.channel)
         eReceiptFulfilledBy = scanResults.ereceiptFulfilledBy

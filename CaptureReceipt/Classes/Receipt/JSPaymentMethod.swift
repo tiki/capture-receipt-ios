@@ -33,10 +33,10 @@ public struct JSPaymentMethod: Encodable {
         - amount: The payment amount, if available.
      */
     init(method: BRPaymentMethod) {
-        self.paymentMethod = JSStringType.opt(stringType: method.method)
-        self.cardType = JSStringType.opt(stringType: method.cardType)
-        self.cardIssuer = JSStringType.opt(stringType: method.cardIssuer)
-        self.amount = JSFloatType.opt(floatType: method.amount)
+        self.paymentMethod = (JSStringType.opt(stringType: method.method) != nil) ? JSStringType.opt(stringType: method.method) : JSStringType(string: "")
+        self.cardType = (JSStringType.opt(stringType: method.cardType) != nil) ? JSStringType.opt(stringType: method.cardType) : JSStringType(string: "")
+        self.cardIssuer = (JSStringType.opt(stringType: method.cardIssuer) != nil) ? JSStringType.opt(stringType: method.cardIssuer) : JSStringType(string: "")
+        self.amount = (JSFloatType.opt(floatType: method.amount) != nil) ? JSFloatType.opt(floatType: method.amount) : JSFloatType(float: 0)
     }
     
     static func opt(method: BRPaymentMethod?) -> JSPaymentMethod? {

@@ -246,6 +246,7 @@ public class CaptureReceipt {
                     request.addValue("Bearer \(token.accessToken)", forHTTPHeaderField: "Authorization")
                     
                     if let requestBody = try? JSONEncoder().encode(receipt) {
+                        print(String(data: requestBody, encoding: .utf8))
                         request.httpBody = requestBody
                     }
                     
