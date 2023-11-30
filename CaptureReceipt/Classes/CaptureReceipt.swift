@@ -134,8 +134,12 @@ public class CaptureReceipt {
     /// Retrieve a list of connected accounts.
     ///
     /// - Returns: A list of connected accounts.
-    public static func accounts() -> [Account] {
-        return []
+    /// 
+    public static func accounts(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) -> [Account] {
+        var accounts: [Account] = []
+        retailer!.accounts(onError: onError, onAccount: {account in accounts.append(account)}, onComplete: onSuccess)
+        email!.accounts(onError: onError, onAccount: {account in accounts.append(account)}, onComplete: onSuccess)
+        return accounts
     }
     
     /// Log out of an account.
@@ -145,10 +149,21 @@ public class CaptureReceipt {
     ///   - onSuccess: A callback executed on successful logout.
     ///   - onError: A callback executed if there is an error during logout, providing an Error object.
     public static func logout(
-        username: String,
+        accountType: AccountType,
+        username: String? = nil,
         onSuccess: @escaping () -> Void,
-        onError: @escaping (Error) -> Void
-    ) {}
+        onError: @escaping (String) -> Void
+    ) {
+        switch(accountType){
+        case .retailer(let retailerEnum):
+            retailer!.logout(onError: {error in onError(error)
+            }, onComplete: onSuccess, retailer: retailerEnum)
+            break
+        case .email(let emailEnum):
+            email!.logout(onError: {error in onError(error)}, onComplete: onSuccess, account: username)
+            break
+        }
+    }
     
     /// Retrieve digital receipt data for a specific account type.
     ///

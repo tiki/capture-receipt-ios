@@ -59,8 +59,8 @@ public class Retailer {
     ///   - onError: A closure to handle error messages.
     ///   - onComplete: A closure to handle the completion of the logout process.
     ///   - account: An instance of the Account struct containing user and account information.
-    public func logout(onError: @escaping (String) -> Void, onComplete: @escaping () -> Void, account: Account? = nil) {
-        if (account == nil) {
+    public func logout(onError: @escaping (String) -> Void, onComplete: @escaping () -> Void, retailer: RetailerEnum? = nil) {
+        if (retailer == nil) {
             BRAccountLinkingManager.shared().resetHistory()
             DispatchQueue.main.async {
                 BRAccountLinkingManager.shared().unlinkAllAccounts {
@@ -69,18 +69,18 @@ public class Retailer {
             }
             return
         }
-//
-//        guard let retailer: BRAccountLinkingRetailer = RetailerEnum( rawValue: account!.accountType.source)?.toBRAccountLinkingRetailer() else {
-//            onError("Unsuported retailer \(account!.accountType.type)")
-//            return
-//        }
-//
-//        BRAccountLinkingManager.shared().resetHistory(for: retailer)
-//        DispatchQueue.main.async {
-//            BRAccountLinkingManager.shared().unlinkAccount(for: retailer) {
-//                onComplete()
-//            }
-//        }
+
+        guard let retailer: BRAccountLinkingRetailer = retailer?.toBRAccountLinkingRetailer() else {
+            onError("Unsuported retailer \(retailer)")
+            return
+        }
+
+        BRAccountLinkingManager.shared().resetHistory(for: retailer)
+        DispatchQueue.main.async {
+            BRAccountLinkingManager.shared().unlinkAccount(for: retailer) {
+                onComplete()
+            }
+        }
 
     }
     /// Retrieves orders for a specific user account or for all linked accounts.
