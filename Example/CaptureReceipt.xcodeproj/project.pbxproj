@@ -500,7 +500,7 @@
 				INFOPLIST_FILE = CaptureReceipt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mytiki.capture.receipt;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mytiki.sdk.capture.receipt.capacitor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -519,7 +519,7 @@
 				INFOPLIST_FILE = CaptureReceipt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mytiki.capture.receipt;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mytiki.sdk.capture.receipt.capacitor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;

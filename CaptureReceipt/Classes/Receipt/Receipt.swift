@@ -16,6 +16,7 @@ public class Receipt: Encodable{
     private let receiptDate: JSStringType?
     /// The time of the receipt, if available.
     private let receiptTime: JSStringType?
+    private let receiptDateTime: Int64?
     /// The retailer's identifier.
     private let retailerId: JSRetailer
     /// An array of products associated with the receipt.
@@ -111,6 +112,7 @@ public class Receipt: Encodable{
     private let purchaseType: JSStringType?
     /// The channel, if available.
     private let channel: JSStringType?
+    private let loyaltyForBanner: Bool?
     /// The entity that fulfilled the eReceipt, if available.
     private let eReceiptFulfilledBy: String?
     /// The shipping status of the eReceipt.
@@ -130,7 +132,7 @@ public class Receipt: Encodable{
     /// The currency code, if available.
     private let currencyCode: String?
     /// The client's merchant name, if available.
-    private let clientMerchantName: JSStringType?
+    private let clientMerchantName: String?
     /// Indicates if the receipt is part of a loyalty program.
     private let loyaltyProgram: Bool?
     /// An array of merchant sources associated with the receipt.
@@ -151,6 +153,7 @@ public class Receipt: Encodable{
     init(scanResults: BRScanResults) {
         receiptDate = JSStringType.opt(stringType: scanResults.receiptDate)
         receiptTime = JSStringType.opt(stringType: scanResults.receiptTime)
+        receiptDateTime = 0
         retailerId = JSRetailer(retailer: scanResults.retailerId)
         products = scanResults.products?.map { product in JSProduct(product: product) } ?? []
         coupons = scanResults.coupons?.map { coupon in JSCoupon(coupon: coupon) } ?? []
@@ -199,6 +202,7 @@ public class Receipt: Encodable{
         eReceiptAdditionalFees = scanResults.ereceiptAdditionalFees
         purchaseType = JSStringType.opt(string: scanResults.purchaseType)
         channel = JSStringType.opt(stringType: scanResults.channel)
+        loyaltyForBanner = false
         eReceiptFulfilledBy = scanResults.ereceiptFulfilledBy
         eReceiptPOSSystem = scanResults.ereceiptPOSSystem
         eReceiptSubMerchant = scanResults.ereceiptSubMerchant
@@ -208,9 +212,9 @@ public class Receipt: Encodable{
         eReceiptEmailSubject = scanResults.ereceiptEmailSubject
         eReceiptShippingCosts = scanResults.ereceiptShippingCosts
         currencyCode = scanResults.currencyCode
-        clientMerchantName = JSStringType.opt(stringType: scanResults.clientMerchantName)
+        clientMerchantName = scanResults.clientMerchantName?.value ?? ""
         loyaltyProgram = scanResults.loyaltyProgram
-        merchantSources = scanResults.merchantSources.map{merchantSources in Int64(truncating: merchantSources)}
+        merchantSources = scanResults.merchantSources?.map{merchantSources in Int64(truncating: merchantSources)} ?? [0]
         paymentTerminalId = JSStringType.opt(stringType: scanResults.paymentTerminalId)
         paymentTransactionId = JSStringType.opt(stringType: scanResults.paymentTransactionId)
         combinedRawText = JSStringType.opt(string: scanResults.combinedRawText)
