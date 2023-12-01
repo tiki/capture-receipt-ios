@@ -183,9 +183,9 @@ public class CaptureReceipt {
     ) {
         switch(accountType){
         case .retailer(_):
-            retailer?.orders(retailer: nil, onError: {error in onError(error)}, onReceipt: {receipt in onReceipt(receipt)}, onComplete: onComplete)
+            retailer?.orders(retailer: nil, onError: {error in onError(error)}, onReceipt: {receipt in publish(Receipt(scanResults: receipt))}, onComplete: onComplete)
         case .email(_):
-            email?.scan(onError: {error in onError(error)}, onReceipt: {receipt in onReceipt(receipt)}, onComplete: onComplete)
+            email?.scan(onError: {error in onError(error)}, onReceipt: {receipt in publish(Receipt(scanResults: receipt))}, onComplete: onComplete)
         }
 
         
@@ -208,9 +208,9 @@ public class CaptureReceipt {
     ) {
         switch(account.provider){
         case .retailer(let retailerEnum):
-            retailer?.orders(retailer: retailerEnum, onError: {error in onError(error)}, onReceipt: {receipt in onReceipt(receipt)}, onComplete: onComplete)
+            retailer?.orders(retailer: retailerEnum, onError: {error in onError(error)}, onReceipt: {receipt in publish(Receipt(scanResults: receipt))}, onComplete: onComplete)
         case .email(_):
-            email?.scanAccount(account: account, onError: {error in onError(error)}, onReceipt: {receipt in onReceipt(receipt)}, onComplete: onComplete)
+            email?.scanAccount(account: account, onError: {error in onError(error)}, onReceipt: {receipt in publish(Receipt(scanResults: receipt))}, onComplete: onComplete)
         }
 
     }
@@ -228,8 +228,8 @@ public class CaptureReceipt {
         onError: @escaping (String) -> Void,
         onComplete: @escaping () -> Void
     ) {
-        retailer?.orders(retailer: nil, onError: {error in onError(error)}, onReceipt: {receipt in onReceipt(receipt)}, onComplete: onComplete)
-        email?.scan(onError: {error in onError(error)}, onReceipt: {receipt in onReceipt(receipt)}, onComplete: onComplete)
+        retailer?.orders(retailer: nil, onError: {error in onError(error)}, onReceipt: {receipt in publish(Receipt(scanResults: receipt))}, onComplete: onComplete)
+        email?.scan(onError: {error in onError(error)}, onReceipt: {receipt in publish(Receipt(scanResults: receipt))}, onComplete: onComplete)
     }
     
     private static func publish(
@@ -246,12 +246,13 @@ public class CaptureReceipt {
                     request.addValue("Bearer \(token.accessToken)", forHTTPHeaderField: "Authorization")
                     
                     if let requestBody = try? JSONEncoder().encode(receipt) {
+                        print(String(data: requestBody, encoding: .utf8))
                         request.httpBody = requestBody
                     }
                     
                     URLSession.shared.dataTask(with: request) { (data, response, error) in
                         if let error = error {
-                            print("Failed to upload receipt. Skipping. \(error)")
+                            print("Failed to upload receipt. Skipping. Error:\(error)")
                             return
                         }
                         
@@ -260,13 +261,13 @@ public class CaptureReceipt {
                             return
                         }
                         
-                        if httpResponse.statusCode == 200 {
+                        if (httpResponse.statusCode >= 200 && httpResponse.statusCode < 300){
                             // Successful response
                             print("Receipt uploaded successfully.")
                         } else {
                             // Handle error response
                             if let data = data, let responseBody = String(data: data, encoding: .utf8) {
-                                print("Failed to upload receipt. Skipping. \(responseBody)")
+                                print("Failed to upload receipt. Skipping. Response Code: \(httpResponse.statusCode). Response Body: \(responseBody)")
                             } else {
                                 print("Failed to upload receipt. Skipping. Unknown error.")
                             }

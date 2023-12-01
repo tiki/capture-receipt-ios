@@ -16,7 +16,7 @@ import BlinkEReceipt
 struct JSRetailer: Encodable{
     /// The retailer's id
     private let id: Int
-    private let bannerId: Int? = nil
+    private var bannerId: Int? = nil
     /**
      Initializes an `JSStringType` struct.
 
@@ -25,6 +25,7 @@ struct JSRetailer: Encodable{
      */
     init(retailer: WFRetailerId) {
         id = Int(retailer.rawValue)
+        bannerId = Int(retailer.rawValue)
     }
     
     static func opt(retailer: WFRetailerId?) -> JSRetailer? {
