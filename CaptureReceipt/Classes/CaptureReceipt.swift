@@ -146,6 +146,7 @@ public class CaptureReceipt {
     /// Log out of an account.
     ///
     /// - Parameters:
+    ///   - accountType: The type of account.
     ///   - username: The username of the account to log out from.
     ///   - onSuccess: A callback executed on successful logout.
     ///   - onError: A callback executed if there is an error during logout, providing an Error object.
@@ -164,6 +165,18 @@ public class CaptureReceipt {
             email!.logout(onError: {error in onError(error)}, onComplete: onSuccess, account: username)
             break
         }
+    }
+    /// Log out all account.
+    ///
+    /// - Parameters:
+    ///   - onSuccess: A callback executed on successful logout.
+    ///   - onError: A callback executed if there is an error during logout, providing an Error object.
+    public static func logout(
+        onSuccess: @escaping () -> Void,
+        onError: @escaping (String) -> Void
+    ) {
+            retailer!.logout(onError: {error in onError(error)}, onComplete: onSuccess)
+            email!.logout(onError: {error in onError(error)}, onComplete: onSuccess)
     }
     
     /// Retrieve digital receipt data for a specific account type.
