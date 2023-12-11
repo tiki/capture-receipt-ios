@@ -136,6 +136,7 @@ public enum RetailerEnum{
             case .walmartCA : return .WALMART_CA
             case .wegmans : return .WEGMANS
             case .postmates: return .POSTMATES
+            default : return .AMAZON
         }
     }
     
