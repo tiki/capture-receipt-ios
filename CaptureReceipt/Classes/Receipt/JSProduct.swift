@@ -103,13 +103,7 @@ struct JSProduct: Encodable {
         unitPrice = JSFloatType.opt(floatType: product.unitPrice)
         unitOfMeasure = (JSStringType.opt(stringType: product.unitOfMeasure) != nil) ? JSStringType.opt(stringType: product.unitOfMeasure) : JSStringType(string: "")
         totalPrice = JSFloatType.opt(floatType: product.totalPrice)
-        fullPrice = {
-            if(product.fullPrice == nil){
-                0
-            }else{
-                product.fullPrice.value
-            }
-        }()
+        fullPrice = product.fullPrice == nil ? 0 : product.fullPrice.value
         line = 0
         productName = product.productName
         brand = product.brand
