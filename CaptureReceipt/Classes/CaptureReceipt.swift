@@ -1,7 +1,7 @@
 import TikiSdk
 import BlinkReceipt
 
-/// The Capture Receipt SDK provides methods to interact with the TIKI Capture Receipt SDK for Android.
+/// The Capture Receipt SDK provides methods to interact with the TIKI Capture Receipt SDK for iOS.
 public class CaptureReceipt {
     
     private static var tikiSdk: TikiSdk = TikiSdk.instance
