@@ -27,7 +27,7 @@ public class CaptureReceipt {
         if(configuration == nil && self.configuration == nil){
             throw NSError()
         } else {
-            configuration = self.configuration!
+            configuration = config
         }
         try await tikiSdk.initialize(id: userId, publishingId: configuration!.tikiPublishingID)
         email = Email(configuration!.microblinkLicenseKey, configuration!.productIntelligenceKey)
