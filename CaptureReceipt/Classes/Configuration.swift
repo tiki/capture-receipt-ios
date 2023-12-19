@@ -9,20 +9,29 @@ import Foundation
 public struct Configuration {
     
     /// The TIKI publishing ID.
-    let tikiPublishingID: String
+    public let tikiPublishingID: String
     
     /// The Microblink license key
-    let microblinkLicenseKey: String
+    public let microblinkLicenseKey: String
     
     /// The product intelligence key for data analytics.
-    let productIntelligenceKey: String
+    public let productIntelligenceKey: String
     
     /// The terms associated with the license.
-    let terms: String
+    public let terms: String
     
     /// The optional API key for Gmail integration.
-    var gmailAPIKey: String? = nil
+    public var gmailAPIKey: String? = nil
     
     /// The optional API key for Outlook integration.
-    var outlookAPIKey: String? = nil
+    public var outlookAPIKey: String? = nil
+    
+    public init(tikiPublishingID: String, microblinkLicenseKey: String, productIntelligenceKey: String, terms: String, gmailAPIKey: String? = nil, outlookAPIKey: String? = nil) {
+        self.tikiPublishingID = tikiPublishingID
+        self.microblinkLicenseKey = microblinkLicenseKey
+        self.productIntelligenceKey = productIntelligenceKey
+        self.terms = terms
+        self.gmailAPIKey = gmailAPIKey
+        self.outlookAPIKey = outlookAPIKey
+    }
 }
