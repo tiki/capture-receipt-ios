@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'CaptureReceipt'
-  s.version          = '0.1.0'
+  s.version          = '0.2.0'
   s.summary          = 'Easily integrate data extraction from receipts, manage data property and licensing, and seamlessly publish data to the TIKI platform.'
   
   s.description      = <<-DESC

@@ -8,7 +8,7 @@ import Foundation
 import BlinkEReceipt
 
 /// An enumeration representing various retailer names as raw string values.
-public enum RetailerEnum{
+public enum RetailerEnum: String, CaseIterable {
     
     case ACME_MARKETS
     case ALBERTSONS
@@ -71,20 +71,20 @@ public enum RetailerEnum{
     case WALMART_CA
     case WEGMANS
     case POSTMATES
-    case TEMUUK
-    case UBEREATSUK
-    case SHEINUS
-    case SHEINUK
-    case SHEINES
-    case ALIEXPRESS
-    case COSTOCOCA
-    case ASDAUK
-    case SAINSBURYUK
-    case TESCOUK
-    case CARREFOURUK
-    case PCEXPRESSCA
-    case AMAZONBETAFR
-    case AMAZONBETAES
+//    case TEMUUK
+//    case UBEREATSUK
+//    case SHEINUS
+//    case SHEINUK
+//    case SHEINES
+//    case ALIEXPRESS
+//    case COSTOCOCA
+//    case ASDAUK
+//    case SAINSBURYUK
+//    case TESCOUK
+//    case CARREFOURUK
+//    case PCEXPRESSCA
+//    case AMAZONBETAFR
+//    case AMAZONBETAES
     
     
     static func fromBRAccountLinkingRetailer(_ ret: BRAccountLinkingRetailer) -> RetailerEnum {
@@ -150,20 +150,20 @@ public enum RetailerEnum{
             case .walmartCA : return .WALMART_CA
             case .wegmans : return .WEGMANS
             case .postmates: return .POSTMATES
-            case .temuUK: return .TEMUUK
-            case .uberEatsUK: return .UBEREATSUK
-            case .sheinUS: return .SHEINUS
-            case .sheinUK: return .SHEINUK
-            case .sheinES: return .SHEINES
-            case .aliExpress: return .ALIEXPRESS
-            case .costcoCA: return .COSTOCOCA
-            case .asdaUK: return .ASDAUK
-            case .sainsburyUK: return .SAINSBURYUK
-            case .tescoUK: return .TESCOUK
-            case .carrefourUK: return .CARREFOURUK
-            case .pcExpressCA: return .PCEXPRESSCA
-            case .amazonBetaFR:  return .AMAZONBETAFR
-            case .amazonBetaES: return .AMAZONBETAES
+//            case .temuUK: return .TEMUUK
+//            case .uberEatsUK: return .UBEREATSUK
+//            case .sheinUS: return .SHEINUS
+//            case .sheinUK: return .SHEINUK
+//            case .sheinES: return .SHEINES
+//            case .aliExpress: return .ALIEXPRESS
+//            case .costcoCA: return .COSTOCOCA
+//            case .asdaUK: return .ASDAUK
+//            case .sainsburyUK: return .SAINSBURYUK
+//            case .tescoUK: return .TESCOUK
+//            case .carrefourUK: return .CARREFOURUK
+//            case .pcExpressCA: return .PCEXPRESSCA
+//            case .amazonBetaFR:  return .AMAZONBETAFR
+//            case .amazonBetaES: return .AMAZONBETAES
             default : return .AMAZON
         }
     }
@@ -234,20 +234,20 @@ public enum RetailerEnum{
             case .WALMART_CA : return .walmartCA
             case .WEGMANS : return .wegmans
             case .POSTMATES: return .postmates
-            case .TEMUUK: return .temuUK
-            case .UBEREATSUK: return .uberEatsUK
-            case .SHEINUS: return .sheinUS
-            case .SHEINUK: return .sheinUK
-            case .SHEINES: return .sheinES
-            case .ALIEXPRESS: return .aliExpress
-            case .COSTOCOCA: return .costcoCA
-            case .ASDAUK: return .asdaUK
-            case .SAINSBURYUK: return .sainsburyUK
-            case .TESCOUK: return .tescoUK
-            case .CARREFOURUK: return .carrefourUK
-            case .PCEXPRESSCA: return .pcExpressCA
-            case .AMAZONBETAFR: return .amazonBetaFR
-            case .AMAZONBETAES: return .amazonBetaES
+//            case .TEMUUK: return .temuUK
+//            case .UBEREATSUK: return .uberEatsUK
+//            case .SHEINUS: return .sheinUS
+//            case .SHEINUK: return .sheinUK
+//            case .SHEINES: return .sheinES
+//            case .ALIEXPRESS: return .aliExpress
+//            case .COSTOCOCA: return .costcoCA
+//            case .ASDAUK: return .asdaUK
+//            case .SAINSBURYUK: return .sainsburyUK
+//            case .TESCOUK: return .tescoUK
+//            case .CARREFOURUK: return .carrefourUK
+//            case .PCEXPRESSCA: return .pcExpressCA
+//            case .AMAZONBETAFR: return .amazonBetaFR
+//            case .AMAZONBETAES: return .amazonBetaES
         }
     }
 }
