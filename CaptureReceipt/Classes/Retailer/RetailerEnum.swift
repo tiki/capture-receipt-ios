@@ -8,7 +8,7 @@ import Foundation
 import BlinkEReceipt
 
 /// An enumeration representing various retailer names as raw string values.
-public enum RetailerEnum{
+public enum RetailerEnum: String, CaseIterable {
     
     case ACME_MARKETS
     case ALBERTSONS
