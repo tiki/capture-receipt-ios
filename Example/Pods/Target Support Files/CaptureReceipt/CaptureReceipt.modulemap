@@ -1,6 +1,0 @@
-framework module CaptureReceipt {
-  umbrella header "CaptureReceipt-umbrella.h"
-
-  export *
-  module * { export * }
-}

@@ -1,6 +1,0 @@
-framework module BlinkEReceipt {
-  umbrella header "BlinkEReceipt.h"
-
-  export *
-  module * { export * }
-}
