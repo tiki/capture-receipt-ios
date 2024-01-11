@@ -1,12 +1,10 @@
 import TikiSdk
-import BlinkReceipt
 
 /// The Capture Receipt SDK provides methods to interact with the TIKI Capture Receipt SDK for iOS.
 public class CaptureReceipt {
     
     private static var tikiSdk: TikiSdk = TikiSdk.instance
     private static var email: Email? = nil
-    private static var retailer: Retailer? = nil
     private static var physical: Physical? = nil
     private static var license: LicenseRecord? = nil
     private static var configuration: Configuration? = nil
@@ -31,7 +29,6 @@ public class CaptureReceipt {
         }
         try await tikiSdk.initialize(id: userId, publishingId: configuration!.tikiPublishingID)
         email = Email(configuration!.microblinkLicenseKey, configuration!.productIntelligenceKey)
-        retailer = Retailer(configuration!.microblinkLicenseKey, configuration!.productIntelligenceKey)
         physical = Physical()
         var title = try await tikiSdk.trail.title.get(ptr: userId)
         if(title == nil){
@@ -92,9 +89,7 @@ public class CaptureReceipt {
         do{
             let licenses = try await tikiSdk.trail.license.all(titleId: title!.id)
             physical!.scan(scanCallback: PhysicalScanCallbacks(
-                onResult: { receipt in
-                    publish(receipt, onError, onComplete)
-                    onReceipt(receipt)
+                onResult: {
                 },
                 onCancel: onComplete,
                 onError: { error in
@@ -117,18 +112,12 @@ public class CaptureReceipt {
     public static func login(
         username: String,
         password: String,
-        accountType: AccountType,
-        onSuccess: @escaping (Account) -> Void,
+        onSuccess: @escaping () -> Void,
         onError: @escaping (String) -> Void
     ) {
-        switch(accountType){
-        case .retailer(let retailerEnum):
-            retailer!.login(username: username, password: password, retailer: retailerEnum, onError: {error in onError(error)}, onSuccess: { account in print(account)})
-            break
-        case .email(let emailEnum):
-            email!.login(username: username, password: password, provider: emailEnum, onError: onError, onSuccess: onSuccess)
-            break
-        }
+        
+        email!.login(username: username, password: password, onError: onError, onSuccess: onSuccess)
+
         
     }
     
@@ -136,12 +125,12 @@ public class CaptureReceipt {
     ///
     /// - Returns: A list of connected accounts.
     /// 
-    public static func accounts(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) -> [Account] {
-        var accounts: [Account] = []
-        retailer!.accounts(onError: onError, onAccount: {account in accounts.append(account)}, onComplete: onSuccess)
-        email!.accounts(onError: onError, onAccount: {account in accounts.append(account)}, onComplete: onSuccess)
-        return accounts
-    }
+//    public static func accounts(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) -> [Account] {
+//        var accounts: [Account] = []
+//        retailer!.accounts(onError: onError, onAccount: {account in accounts.append(account)}, onComplete: onSuccess)
+//        email!.accounts(onError: onError, onAccount: {account in accounts.append(account)}, onComplete: onSuccess)
+//        return accounts
+//    }
     
     /// Log out of an account.
     ///
@@ -151,20 +140,13 @@ public class CaptureReceipt {
     ///   - onSuccess: A callback executed on successful logout.
     ///   - onError: A callback executed if there is an error during logout, providing an Error object.
     public static func logout(
-        accountType: AccountType,
         username: String? = nil,
         onSuccess: @escaping () -> Void,
         onError: @escaping (String) -> Void
     ) {
-        switch(accountType){
-        case .retailer(let retailerEnum):
-            retailer!.logout(onError: {error in onError(error)
-            }, onComplete: onSuccess, retailer: retailerEnum)
-            break
-        case .email(let emailEnum):
-            email!.logout(onError: {error in onError(error)}, onComplete: onSuccess, account: username)
-            break
-        }
+
+        email!.logout(onError: {error in onError(error)}, onComplete: onSuccess, account: username)
+
     }
     /// Log out all account.
     ///
@@ -175,7 +157,6 @@ public class CaptureReceipt {
         onSuccess: @escaping () -> Void,
         onError: @escaping (String) -> Void
     ) {
-            retailer!.logout(onError: {error in onError(error)}, onComplete: onSuccess)
             email!.logout(onError: {error in onError(error)}, onComplete: onSuccess)
     }
     
@@ -189,17 +170,11 @@ public class CaptureReceipt {
     ///   - onError: A callback executed if there is an error during data retrieval, providing an Error String.
     ///   - onComplete: A callback executed when the data retrieval process is completed.
     public static func scrape(
-        accountType: AccountType,
-        onReceipt: @escaping (BRScanResults) -> Void,
+        onReceipt: @escaping () -> Void,
         onError: @escaping (String) -> Void,
         onComplete: @escaping () -> Void
     ) {
-        switch(accountType){
-        case .retailer(_):
-            retailer?.orders(retailer: nil, onError: {error in onError(error)}, onReceipt: {receipt in publish(Receipt(scanResults: receipt))}, onComplete: onComplete)
-        case .email(_):
-            email?.scan(onError: {error in onError(error)}, onReceipt: {receipt in publish(Receipt(scanResults: receipt))}, onComplete: onComplete)
-        }
+        email?.scan(onError: {error in onError(error)}, onReceipt: { }, onComplete: onComplete)
 
         
     }
@@ -213,20 +188,15 @@ public class CaptureReceipt {
     ///   - onReceipt: A callback executed for each retrieved receipt, providing the retrieved Receipt object.
     ///   - onError: A callback executed in case of an error during data retrieval, providing an Error object.
     ///   - onComplete: A callback executed upon the completion of the data retrieval process.
-    public static func scrape(
-        account: Account,
-        onReceipt: @escaping (BRScanResults) -> Void,
-        onError: @escaping (String) -> Void,
-        onComplete: @escaping () -> Void
-    ) {
-        switch(account.provider){
-        case .retailer(let retailerEnum):
-            retailer?.orders(retailer: retailerEnum, onError: {error in onError(error)}, onReceipt: {receipt in publish(Receipt(scanResults: receipt))}, onComplete: onComplete)
-        case .email(_):
-            email?.scanAccount(account: account, onError: {error in onError(error)}, onReceipt: {receipt in publish(Receipt(scanResults: receipt))}, onComplete: onComplete)
-        }
-
-    }
+//    public static func scrape(
+//        onReceipt: @escaping () -> Void,
+//        onError: @escaping (String) -> Void,
+//        onComplete: @escaping () -> Void
+//    ) {
+//        email?.scanAccount(onError: {error in onError(error)}, onReceipt: {_ in }, onComplete: onComplete)
+//
+//
+//    }
     
     /// Retrieve digital receipt data for all connected accounts.
     ///
@@ -236,60 +206,59 @@ public class CaptureReceipt {
     ///   - onReceipt: A callback executed for each retrieved receipt, providing the retrieved Receipt object.
     ///   - onError: A callback executed in case of an error during data retrieval, providing an Error object.
     ///   - onComplete: A callback executed upon the completion of the data retrieval process.
-    public static func scrape(
-        onReceipt: @escaping (BRScanResults) -> Void,
-        onError: @escaping (String) -> Void,
-        onComplete: @escaping () -> Void
-    ) {
-        retailer?.orders(retailer: nil, onError: {error in onError(error)}, onReceipt: {receipt in publish(Receipt(scanResults: receipt))}, onComplete: onComplete)
-        email?.scan(onError: {error in onError(error)}, onReceipt: {receipt in publish(Receipt(scanResults: receipt))}, onComplete: onComplete)
-    }
+//    public static func scrape(
+//        onReceipt: @escaping () -> Void,
+//        onError: @escaping (String) -> Void,
+//        onComplete: @escaping () -> Void
+//    ) {
+//        email?.scan(onError: {error in onError(error)}, onReceipt: {_ in }, onComplete: onComplete)
+//    }
     
-    private static func publish(
-        _ receipt: Receipt,
-        _ onError: ((Error) -> Void)? = nil,
-        _ onComplete: (() -> Void)? = nil ) {
-            Task{
-                do{
-                    let token: Token = try await tikiSdk.idp.token()
-                    let url = URL(string: "https://ingest.mytiki.com/api/latest/microblink-receipt")!
-                    var request = URLRequest(url: url)
-                    request.httpMethod = "POST"
-                    
-                    request.addValue("Bearer \(token.accessToken)", forHTTPHeaderField: "Authorization")
-                    
-                    if let requestBody = try? JSONEncoder().encode(receipt) {
-                        print(String(data: requestBody, encoding: .utf8))
-                        request.httpBody = requestBody
-                    }
-                    
-                    URLSession.shared.dataTask(with: request) { (data, response, error) in
-                        if let error = error {
-                            print("Failed to upload receipt. Skipping. Error:\(error)")
-                            return
-                        }
-                        
-                        guard let httpResponse = response as? HTTPURLResponse else {
-                            print("Failed to upload receipt. Skipping. Unexpected response.")
-                            return
-                        }
-                        
-                        if (httpResponse.statusCode >= 200 && httpResponse.statusCode < 300){
-                            // Successful response
-                            print("Receipt uploaded successfully.")
-                        } else {
-                            // Handle error response
-                            if let data = data, let responseBody = String(data: data, encoding: .utf8) {
-                                print("Failed to upload receipt. Skipping. Response Code: \(httpResponse.statusCode). Response Body: \(responseBody)")
-                            } else {
-                                print("Failed to upload receipt. Skipping. Unknown error.")
-                            }
-                        }
-                    }.resume()
-                }catch{
-                    onError?(error)
-                }
-                onComplete?()
-            }
-        }
+//    private static func publish(
+//        _ receipt: Receipt,
+//        _ onError: ((Error) -> Void)? = nil,
+//        _ onComplete: (() -> Void)? = nil ) {
+//            Task{
+//                do{
+//                    let token: Token = try await tikiSdk.idp.token()
+//                    let url = URL(string: "https://ingest.mytiki.com/api/latest/microblink-receipt")!
+//                    var request = URLRequest(url: url)
+//                    request.httpMethod = "POST"
+//                    
+//                    request.addValue("Bearer \(token.accessToken)", forHTTPHeaderField: "Authorization")
+//                    
+//                    if let requestBody = try? JSONEncoder().encode(receipt) {
+//                        print(String(data: requestBody, encoding: .utf8))
+//                        request.httpBody = requestBody
+//                    }
+//                    
+//                    URLSession.shared.dataTask(with: request) { (data, response, error) in
+//                        if let error = error {
+//                            print("Failed to upload receipt. Skipping. Error:\(error)")
+//                            return
+//                        }
+//                        
+//                        guard let httpResponse = response as? HTTPURLResponse else {
+//                            print("Failed to upload receipt. Skipping. Unexpected response.")
+//                            return
+//                        }
+//                        
+//                        if (httpResponse.statusCode >= 200 && httpResponse.statusCode < 300){
+//                            // Successful response
+//                            print("Receipt uploaded successfully.")
+//                        } else {
+//                            // Handle error response
+//                            if let data = data, let responseBody = String(data: data, encoding: .utf8) {
+//                                print("Failed to upload receipt. Skipping. Response Code: \(httpResponse.statusCode). Response Body: \(responseBody)")
+//                            } else {
+//                                print("Failed to upload receipt. Skipping. Unknown error.")
+//                            }
+//                        }
+//                    }.resume()
+//                }catch{
+//                    onError?(error)
+//                }
+//                onComplete?()
+//            }
+//        }
 }

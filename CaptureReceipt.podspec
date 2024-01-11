@@ -19,8 +19,6 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/tiki/capture-receipt-ios.git', :tag => s.version.to_s }
   s.ios.deployment_target = '15.0'
   s.source_files = 'CaptureReceipt/Classes/**/*'
-  s.dependency 'BlinkReceipt', '~> 1.27'
-  s.dependency 'BlinkEReceipt', '~> 2.0'  
   s.dependency 'TikiSdkDebug', '3.0.0', :configurations => 'Debug'
   s.dependency 'TikiSdkRelease', '3.0.0', :configurations => 'Release'
 end

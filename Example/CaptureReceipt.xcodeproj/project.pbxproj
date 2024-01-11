@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		491D04CCCA3266A26B06904F /* Pods_CaptureReceipt_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 409C166414DD903F34CF87FF /* Pods_CaptureReceipt_Tests.framework */; };
 		607FACEC1AFB9204008FA782 /* TestInitialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* TestInitialization.swift */; };
 		8C45444A2B06A9A10094A781 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4544492B06A9A10094A781 /* SwiftUIView.swift */; };
 		8C45444C2B0790E80094A781 /* TestInitWithoutConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C45444B2B0790E70094A781 /* TestInitWithoutConfig.swift */; };
-		EC2FCD87EDB603E316C8A309 /* Pods_CaptureReceipt_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2349EFFE521063FA3644709E /* Pods_CaptureReceipt_Example.framework */; };
+		B567BBB817E32C3FA6E700D7 /* Pods_CaptureReceipt_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE8EF9FB18BCD1061E19A80A /* Pods_CaptureReceipt_Example.framework */; };
+		F82B75FBF1AAAC2EB5AE3620 /* Pods_CaptureReceipt_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5D8D485C99162FA64B0BABF /* Pods_CaptureReceipt_Tests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,22 +25,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2349EFFE521063FA3644709E /* Pods_CaptureReceipt_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CaptureReceipt_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B7338C129EF6B0E263619F6 /* Pods-CaptureReceipt_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureReceipt_Example.release.xcconfig"; path = "Target Support Files/Pods-CaptureReceipt_Example/Pods-CaptureReceipt_Example.release.xcconfig"; sourceTree = "<group>"; };
 		34E3F762E4719D5F812E5AEB /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		409C166414DD903F34CF87FF /* Pods_CaptureReceipt_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CaptureReceipt_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD01AFB9204008FA782 /* CaptureReceipt_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CaptureReceipt_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* CaptureReceipt_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaptureReceipt_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* TestInitialization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestInitialization.swift; sourceTree = "<group>"; };
-		64A3CBD57AC5A106798CB1F4 /* Pods-CaptureReceipt_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureReceipt_Example.debug.xcconfig"; path = "Target Support Files/Pods-CaptureReceipt_Example/Pods-CaptureReceipt_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		7FEB49E811E9047563B191F8 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		81A1ABB53A2FF2436C23305B /* CaptureReceipt.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = CaptureReceipt.podspec; path = ../CaptureReceipt.podspec; sourceTree = "<group>"; };
-		8885FB14589DDE04401E7792 /* Pods-CaptureReceipt_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureReceipt_Tests.release.xcconfig"; path = "Target Support Files/Pods-CaptureReceipt_Tests/Pods-CaptureReceipt_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		8C4544492B06A9A10094A781 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		8C45444B2B0790E70094A781 /* TestInitWithoutConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestInitWithoutConfig.swift; sourceTree = "<group>"; };
-		BA6632B28D70559AD6E043E7 /* Pods-CaptureReceipt_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureReceipt_Example.release.xcconfig"; path = "Target Support Files/Pods-CaptureReceipt_Example/Pods-CaptureReceipt_Example.release.xcconfig"; sourceTree = "<group>"; };
-		CFE8C6EE0BB6ABA952D59D36 /* Pods-CaptureReceipt_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureReceipt_Tests.debug.xcconfig"; path = "Target Support Files/Pods-CaptureReceipt_Tests/Pods-CaptureReceipt_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		B9521C5C1C4CB529ABEBCFCD /* Pods-CaptureReceipt_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureReceipt_Tests.debug.xcconfig"; path = "Target Support Files/Pods-CaptureReceipt_Tests/Pods-CaptureReceipt_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		CB96461DA0473D8172509201 /* Pods-CaptureReceipt_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureReceipt_Example.debug.xcconfig"; path = "Target Support Files/Pods-CaptureReceipt_Example/Pods-CaptureReceipt_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		CE8EF9FB18BCD1061E19A80A /* Pods_CaptureReceipt_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CaptureReceipt_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5D8D485C99162FA64B0BABF /* Pods_CaptureReceipt_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CaptureReceipt_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCB4ADAC84FDBD32FA723008 /* Pods-CaptureReceipt_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureReceipt_Tests.release.xcconfig"; path = "Target Support Files/Pods-CaptureReceipt_Tests/Pods-CaptureReceipt_Tests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,7 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC2FCD87EDB603E316C8A309 /* Pods_CaptureReceipt_Example.framework in Frameworks */,
+				B567BBB817E32C3FA6E700D7 /* Pods_CaptureReceipt_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,18 +56,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				491D04CCCA3266A26B06904F /* Pods_CaptureReceipt_Tests.framework in Frameworks */,
+				F82B75FBF1AAAC2EB5AE3620 /* Pods_CaptureReceipt_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		47125C30E2DFB11239C00ABB /* Frameworks */ = {
+		594FC249E4448882D9E5A98F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2349EFFE521063FA3644709E /* Pods_CaptureReceipt_Example.framework */,
-				409C166414DD903F34CF87FF /* Pods_CaptureReceipt_Tests.framework */,
+				CE8EF9FB18BCD1061E19A80A /* Pods_CaptureReceipt_Example.framework */,
+				D5D8D485C99162FA64B0BABF /* Pods_CaptureReceipt_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -80,7 +80,7 @@
 				607FACE81AFB9204008FA782 /* Tests */,
 				607FACD11AFB9204008FA782 /* Products */,
 				C798EB829AA4E97047DCF6CF /* Pods */,
-				47125C30E2DFB11239C00ABB /* Frameworks */,
+				594FC249E4448882D9E5A98F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -142,10 +142,10 @@
 		C798EB829AA4E97047DCF6CF /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				64A3CBD57AC5A106798CB1F4 /* Pods-CaptureReceipt_Example.debug.xcconfig */,
-				BA6632B28D70559AD6E043E7 /* Pods-CaptureReceipt_Example.release.xcconfig */,
-				CFE8C6EE0BB6ABA952D59D36 /* Pods-CaptureReceipt_Tests.debug.xcconfig */,
-				8885FB14589DDE04401E7792 /* Pods-CaptureReceipt_Tests.release.xcconfig */,
+				CB96461DA0473D8172509201 /* Pods-CaptureReceipt_Example.debug.xcconfig */,
+				2B7338C129EF6B0E263619F6 /* Pods-CaptureReceipt_Example.release.xcconfig */,
+				B9521C5C1C4CB529ABEBCFCD /* Pods-CaptureReceipt_Tests.debug.xcconfig */,
+				FCB4ADAC84FDBD32FA723008 /* Pods-CaptureReceipt_Tests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -157,11 +157,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "CaptureReceipt_Example" */;
 			buildPhases = (
-				FF3434E3E4AC3A6590B3F3CE /* [CP] Check Pods Manifest.lock */,
+				2C5CAD67BEE40F80FD889ACB /* [CP] Check Pods Manifest.lock */,
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
-				2C42386865BD36496AE79CA9 /* [CP] Embed Pods Frameworks */,
+				88F9BE2A9FD90BA6B3DC2314 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -176,7 +176,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "CaptureReceipt_Tests" */;
 			buildPhases = (
-				FF88635C338A62071625B207 /* [CP] Check Pods Manifest.lock */,
+				56D67030649A28645178AEB6 /* [CP] Check Pods Manifest.lock */,
 				607FACE11AFB9204008FA782 /* Sources */,
 				607FACE21AFB9204008FA782 /* Frameworks */,
 				607FACE31AFB9204008FA782 /* Resources */,
@@ -253,69 +253,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2C42386865BD36496AE79CA9 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CaptureReceipt_Example/Pods-CaptureReceipt_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AppAuth/AppAuth.framework",
-				"${BUILT_PRODUCTS_DIR}/BRMSGraphMSALAuthProvider/BRMSGraphMSALAuthProvider.framework",
-				"${BUILT_PRODUCTS_DIR}/CaptureReceipt/CaptureReceipt.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMAppAuth/GTMAppAuth.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleAPIClientForREST/GoogleAPIClientForREST.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleSignIn/GoogleSignIn.framework",
-				"${BUILT_PRODUCTS_DIR}/MSAL/MSAL.framework",
-				"${BUILT_PRODUCTS_DIR}/MSGraphClientModels/MSGraphClientModels.framework",
-				"${BUILT_PRODUCTS_DIR}/MSGraphClientSDK/MSGraphClientSDK.framework",
-				"${BUILT_PRODUCTS_DIR}/TikiSdkDebug/TikiSdk.framework",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AccountLinking/AccountLinking.framework/AccountLinking",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/BRMailCore/MailCore.framework/MailCore",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/BlinkEReceipt/BlinkEReceipt.framework/BlinkEReceipt",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/BlinkReceipt/BlinkReceipt.framework/BlinkReceipt",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/TikiSdkDebug/App.framework/App",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/TikiSdkDebug/Flutter.framework/Flutter",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/TikiSdkDebug/flutter_secure_storage.framework/flutter_secure_storage",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/TikiSdkDebug/sqlite3_flutter_libs.framework/sqlite3_flutter_libs",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/TikiSdkDebug/sqlite3.framework/sqlite3",
-				"${BUILT_PRODUCTS_DIR}/TikiSdkRelease/TikiSdk.framework",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/TikiSdkRelease/App.framework/App",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/TikiSdkRelease/Flutter.framework/Flutter",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/TikiSdkRelease/flutter_secure_storage.framework/flutter_secure_storage",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/TikiSdkRelease/sqlite3_flutter_libs.framework/sqlite3_flutter_libs",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/TikiSdkRelease/sqlite3.framework/sqlite3",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AppAuth.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BRMSGraphMSALAuthProvider.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CaptureReceipt.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMAppAuth.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleAPIClientForREST.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleSignIn.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MSAL.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MSGraphClientModels.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MSGraphClientSDK.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TikiSdk.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AccountLinking.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MailCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BlinkEReceipt.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BlinkReceipt.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/App.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Flutter.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/flutter_secure_storage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/sqlite3_flutter_libs.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/sqlite3.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CaptureReceipt_Example/Pods-CaptureReceipt_Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FF3434E3E4AC3A6590B3F3CE /* [CP] Check Pods Manifest.lock */ = {
+		2C5CAD67BEE40F80FD889ACB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -337,7 +275,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FF88635C338A62071625B207 /* [CP] Check Pods Manifest.lock */ = {
+		56D67030649A28645178AEB6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -357,6 +295,42 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		88F9BE2A9FD90BA6B3DC2314 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CaptureReceipt_Example/Pods-CaptureReceipt_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CaptureReceipt/CaptureReceipt.framework",
+				"${BUILT_PRODUCTS_DIR}/TikiSdkDebug/TikiSdk.framework",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/TikiSdkDebug/App.framework/App",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/TikiSdkDebug/Flutter.framework/Flutter",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/TikiSdkDebug/flutter_secure_storage.framework/flutter_secure_storage",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/TikiSdkDebug/sqlite3_flutter_libs.framework/sqlite3_flutter_libs",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/TikiSdkDebug/sqlite3.framework/sqlite3",
+				"${BUILT_PRODUCTS_DIR}/TikiSdkRelease/TikiSdk.framework",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/TikiSdkRelease/App.framework/App",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/TikiSdkRelease/Flutter.framework/Flutter",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/TikiSdkRelease/flutter_secure_storage.framework/flutter_secure_storage",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/TikiSdkRelease/sqlite3_flutter_libs.framework/sqlite3_flutter_libs",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/TikiSdkRelease/sqlite3.framework/sqlite3",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CaptureReceipt.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TikiSdk.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/App.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Flutter.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/flutter_secure_storage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/sqlite3_flutter_libs.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/sqlite3.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CaptureReceipt_Example/Pods-CaptureReceipt_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -491,7 +465,7 @@
 		};
 		607FACF01AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 64A3CBD57AC5A106798CB1F4 /* Pods-CaptureReceipt_Example.debug.xcconfig */;
+			baseConfigurationReference = CB96461DA0473D8172509201 /* Pods-CaptureReceipt_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -510,7 +484,7 @@
 		};
 		607FACF11AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BA6632B28D70559AD6E043E7 /* Pods-CaptureReceipt_Example.release.xcconfig */;
+			baseConfigurationReference = 2B7338C129EF6B0E263619F6 /* Pods-CaptureReceipt_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -529,7 +503,7 @@
 		};
 		607FACF31AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CFE8C6EE0BB6ABA952D59D36 /* Pods-CaptureReceipt_Tests.debug.xcconfig */;
+			baseConfigurationReference = B9521C5C1C4CB529ABEBCFCD /* Pods-CaptureReceipt_Tests.debug.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 8B528SGCJW;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -552,7 +526,7 @@
 		};
 		607FACF41AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8885FB14589DDE04401E7792 /* Pods-CaptureReceipt_Tests.release.xcconfig */;
+			baseConfigurationReference = FCB4ADAC84FDBD32FA723008 /* Pods-CaptureReceipt_Tests.release.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 8B528SGCJW;
 				FRAMEWORK_SEARCH_PATHS = (
