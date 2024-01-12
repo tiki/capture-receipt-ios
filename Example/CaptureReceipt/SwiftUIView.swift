@@ -59,18 +59,6 @@ struct RewardsExampleApp: App {
                 
                 SecureField("enter a password", text: $password)
                     .padding(10)
-                Text("Amazon Login")
-                    .font(.system(size: 20, weight: .regular, design: .rounded)).clipShape(RoundedRectangle(cornerRadius: 10))
-                    .onTapGesture {
-                        Task{
-                            CaptureReceipt.login(
-                                username: username,
-                                password: password,
-                                accountType: .retailer(.AMAZON),
-                                onSuccess: { account in print("amazon connected") },
-                                onError: {error in print("error \(error)") } )
-                        }
-                    }
                 Text("Gmail Login")
                     .font(.system(size: 20, weight: .regular, design: .rounded)).clipShape(RoundedRectangle(cornerRadius: 10))
                     .onTapGesture {
@@ -78,46 +66,24 @@ struct RewardsExampleApp: App {
                             CaptureReceipt.login(
                                 username: username,
                                 password: password,
-                                accountType: .email(.GMAIL),
-                                onSuccess: { account in print("gmail connected") },
+                                onSuccess: { print("gmail connected") },
                                 onError: {error in print("error \(error)") } )
                         }
                     }
-                Text("Logout Amazon")
-                    .font(.system(size: 20, weight: .regular, design: .rounded)).clipShape(RoundedRectangle(cornerRadius: 10))
-                    .onTapGesture {
-                        Task{
-                            CaptureReceipt.logout(accountType: .retailer(.AMAZON), onSuccess: {print("Logout")},onError: {error in print("error \(error)") })
-                        }
-                    }
+
                 Text("Logout Gmail")
                     .font(.system(size: 20, weight: .regular, design: .rounded)).clipShape(RoundedRectangle(cornerRadius: 10))
                     .onTapGesture {
                         Task{
-                            CaptureReceipt.logout(accountType: .email(.GMAIL), username: nil, onSuccess: {print("Logout")},onError: {error in print("error \(error)") })
-                        }
-                    }
-                Text("Accounts")
-                    .font(.system(size: 20, weight: .regular, design: .rounded)).clipShape(RoundedRectangle(cornerRadius: 10))
-                    .onTapGesture {
-                        Task{
-                            print(CaptureReceipt.accounts(onSuccess: {print("Accounts")}, onError: {error in print("error \(error)") }))
-                        }
+                            CaptureReceipt.logout(username: nil, onSuccess: {print("Logout")},onError: {error in print("error \(error)") })
                     }
                 Text("Scan")
                     .font(.system(size: 20, weight: .regular, design: .rounded)).clipShape(RoundedRectangle(cornerRadius: 10))
                     .onTapGesture {
                         Task{
                             print("ScanStart")
-                            CaptureReceipt.scrape(onReceipt: {receipt in print(receipt)}, onError: {error in print("error \(error)") }, onComplete: {print("Scan")})
-                        }
-                    }
-                Text("Scan Account")
-                    .font(.system(size: 20, weight: .regular, design: .rounded)).clipShape(RoundedRectangle(cornerRadius: 10))
-                    .onTapGesture {
-                        Task{
-                            print("ScanStart")
-                            CaptureReceipt.scrape(account: Account.init(accountType: .email(.GMAIL), user: "jessemonteiroferreira@gmail.com", isVerified: true),onReceipt: {receipt in print(receipt)}, onError: {error in print("error \(error)") }, onComplete: {print("Scan")})
+                            CaptureReceipt.scrape(onReceipt: {print("")}, onError: {error in print("error \(error)") }, onComplete: {print("Scan")})
+                            }
                         }
                     }
             }

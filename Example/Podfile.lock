@@ -1,84 +1,17 @@
 PODS:
-  - AccountLinking (2.6.5)
-  - AppAuth (1.6.2):
-    - AppAuth/Core (= 1.6.2)
-    - AppAuth/ExternalUserAgent (= 1.6.2)
-  - AppAuth/Core (1.6.2)
-  - AppAuth/ExternalUserAgent (1.6.2):
-    - AppAuth/Core
-  - BlinkEReceipt (2.31.0):
-    - AccountLinking (~> 2.6.5)
-    - AppAuth (~> 1.3)
-    - BlinkReceipt (~> 1.39.0)
-    - BRMailCore (~> 0.1)
-    - BRMSGraphMSALAuthProvider (~> 1.0.0)
-    - GoogleAPIClientForREST/Gmail (~> 1.3)
-    - GoogleSignIn (~> 6.2.0)
-    - GTMAppAuth (~> 1.0)
-    - MSGraphClientModels (~> 1.3)
-  - BlinkReceipt (1.39.0)
-  - BRMailCore (0.1.0)
-  - BRMSGraphMSALAuthProvider (1.0.0):
-    - MSAL (~> 1.0)
-    - MSGraphClientSDK (~> 1.0.0)
   - CaptureReceipt (0.2.0):
-    - BlinkEReceipt (~> 2.0)
-    - BlinkReceipt (~> 1.27)
     - TikiSdkDebug (= 3.0.0)
     - TikiSdkRelease (= 3.0.0)
-  - GoogleAPIClientForREST/Core (1.7.0):
-    - GTMSessionFetcher (< 2.0, >= 1.6.1)
-  - GoogleAPIClientForREST/Gmail (1.7.0):
-    - GoogleAPIClientForREST/Core
-    - GTMSessionFetcher (< 2.0, >= 1.6.1)
-  - GoogleSignIn (6.2.4):
-    - AppAuth (~> 1.5)
-    - GTMAppAuth (~> 1.3)
-    - GTMSessionFetcher/Core (< 3.0, >= 1.1)
-  - GTMAppAuth (1.3.1):
-    - AppAuth/Core (~> 1.6)
-    - GTMSessionFetcher/Core (< 3.0, >= 1.5)
-  - GTMSessionFetcher (1.7.2):
-    - GTMSessionFetcher/Full (= 1.7.2)
-  - GTMSessionFetcher/Core (1.7.2)
-  - GTMSessionFetcher/Full (1.7.2):
-    - GTMSessionFetcher/Core (= 1.7.2)
-  - MSAL (1.2.18):
-    - MSAL/app-lib (= 1.2.18)
-  - MSAL/app-lib (1.2.18)
-  - MSGraphClientModels (1.3.0)
-  - MSGraphClientSDK (1.0.0):
-    - MSGraphClientSDK/Authentication (= 1.0.0)
-    - MSGraphClientSDK/Common (= 1.0.0)
-  - MSGraphClientSDK/Authentication (1.0.0)
-  - MSGraphClientSDK/Common (1.0.0):
-    - MSGraphClientSDK/Authentication
   - TikiSdkDebug (3.0.0)
   - TikiSdkRelease (3.0.0)
 
 DEPENDENCIES:
-  - BlinkEReceipt (~> 2.0)
-  - BlinkReceipt (~> 1.27)
   - CaptureReceipt (from `../`)
   - TikiSdkDebug (= 3.0.0)
   - TikiSdkRelease (= 3.0.0)
 
 SPEC REPOS:
-  https://github.com/BlinkReceipt/PodSpecRepo.git:
-    - AccountLinking
-    - BlinkEReceipt
-    - BlinkReceipt
-    - BRMailCore
-    - BRMSGraphMSALAuthProvider
   trunk:
-    - AppAuth
-    - GoogleAPIClientForREST
-    - GoogleSignIn
-    - GTMAppAuth
-    - GTMSessionFetcher
-    - MSAL
-    - MSGraphClientModels
-    - MSGraphClientSDK
     - TikiSdkDebug
     - TikiSdkRelease
 
@@ -87,23 +20,10 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  AccountLinking: b1055f8e09d35b54d22c1b807bd692a8224ee9ca
-  AppAuth: 3bb1d1cd9340bd09f5ed189fb00b1cc28e1e8570
-  BlinkEReceipt: c3e5d1e0486796df84a3b54008e0ae134461f434
-  BlinkReceipt: 1e4e8d306ea7b64e26c64851b151ec1306e4f50c
-  BRMailCore: 07a819fe3342388551361b95f003a5afc0642281
-  BRMSGraphMSALAuthProvider: 62676b8660c31a81e457e3bee0c7145d10601efd
-  CaptureReceipt: bcb4d9c3da3bdc6ef9f5a8d71ac4bc9fa5939134
-  GoogleAPIClientForREST: 2d4140915e2ec6d1bcb39c9df4a534c75706c595
-  GoogleSignIn: 5651ce3a61e56ca864160e79b484cd9ed3f49b7a
-  GTMAppAuth: 0ff230db599948a9ad7470ca667337803b3fc4dd
-  GTMSessionFetcher: 5595ec75acf5be50814f81e9189490412bad82ba
-  MSAL: 75402959845e55146583efbf37ff4ad90b408630
-  MSGraphClientModels: ffef6d0a1cdaa774e1689e38da35301cb74fc72a
-  MSGraphClientSDK: ffc07a58a838e0702c7bf2a856367035d4a335d7
+  CaptureReceipt: 63319c72c1b7c86a5e054fde9da0b5c2486390ae
   TikiSdkDebug: 85a41ce306804d45014345fb12ed4f34b83defe0
   TikiSdkRelease: 5979b718bf1776d1d9e66fbd503aed531f9e4d0d
 
-PODFILE CHECKSUM: e52855a0e43072d9891d83b756bc3d944993355c
+PODFILE CHECKSUM: 17ec186e4cbdad28b24afd07c81d578a17d13af2
 
-COCOAPODS: 1.12.1
+COCOAPODS: 1.14.3
