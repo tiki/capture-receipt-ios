@@ -18,7 +18,7 @@ public class Email {
     ///   - productKey: The product key for the plugin.
     ///   - googleClientId: The Google Client ID for OAuth authentication (optional).
     ///   - outlookClientId: The Outlook Client ID for OAuth authentication (optional).
-    public init(_ licenseKey: String, _ productKey: String, _ googleClientId: String? = nil,  _ outlookClientId: String? = nil)  {
+    public init(_ googleClientId: String? = nil,  _ outlookClientId: String? = nil)  {
         
     }
     
