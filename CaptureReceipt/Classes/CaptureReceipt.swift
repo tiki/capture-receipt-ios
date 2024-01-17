@@ -4,12 +4,13 @@ import TikiSdk
 public class CaptureReceipt {
     
     private static var tikiSdk: TikiSdk = TikiSdk.instance
-    private static var email: Email? = nil
-    private static var physical: Physical? = nil
+    private static var email = Email()
+    private static var physical = Physical()
+    private static var builder = CaptureReceiptBuilder()
     private static var license: LicenseRecord? = nil
-    private static var configuration: Configuration? = nil
     private static var userId: String? = nil
-    private static var title: TitleRecord? = nil
+    public static var title: TitleRecord? = nil
+    public static var receiptService: ReceiptService? = nil
     
     /// Initializes the Capture Receipt SDK.
     ///
@@ -20,57 +21,15 @@ public class CaptureReceipt {
     /// - Throws: An error if the SDK initialization fails.
     ///
     /// - SeeAlso: `Configuration`
-    public static func initialize(userId: String, config: Configuration? = nil) async throws {
-        var configuration = config
-        if(configuration == nil && self.configuration == nil){
-            throw NSError()
-        } else {
-            configuration = self.configuration!
-        }
-        try await tikiSdk.initialize(id: userId, publishingId: configuration!.tikiPublishingID)
-        email = Email(configuration!.microblinkLicenseKey, configuration!.productIntelligenceKey)
+    public static func initialize(userId: String, providerID: String, terms: String, gmailAPIKey: String? = nil, outlookAPIKey: String? = nil) async throws {
+        try await tikiSdk.initialize(id: userId, publishingId: providerID)
+        email = Email()
         physical = Physical()
-        var title = try await tikiSdk.trail.title.get(ptr: userId)
-        if(title == nil){
-            title = try await tikiSdk.trail.title.create(
-                ptr: userId,
-                tags: [Tag(tag:TagCommon.PURCHASE_HISTORY)])
-        }
-        CaptureReceipt.title = title
-        license = try await tikiSdk.trail.license.create(
-            titleId: title!.id,
-            uses: [Use(usecases: [Usecase(usecase: UsecaseCommon.analytics)], destinations: ["*"])],
-            terms: configuration!.terms
-        )
+        receiptService = ReceiptService()
         CaptureReceipt.userId = userId
     }
     
-    /// Configures the Capture Receipt SDK with the necessary parameters.
-    ///
-    /// - Parameters:
-    ///   - tikiPublishingID: The TIKI publishing ID.
-    ///   - microblinkLicenseKey: The Microblink license key.
-    ///   - productIntelligenceKey: The product intelligence key.
-    ///   - terms: The terms associated with the license.
-    ///   - gmailAPIKey: The API key for Gmail (optional).
-    ///   - outlookAPIKey: The API key for Outlook (optional).
-    public static func config(
-        tikiPublishingID: String,
-        microblinkLicenseKey: String,
-        productIntelligenceKey: String,
-        terms: String,
-        gmailAPIKey: String? = nil,
-        outlookAPIKey: String? = nil
-    ){
-        self.configuration = Configuration(
-            tikiPublishingID: tikiPublishingID,
-            microblinkLicenseKey: microblinkLicenseKey,
-            productIntelligenceKey: productIntelligenceKey,
-            terms: terms,
-            gmailAPIKey: gmailAPIKey,
-            outlookAPIKey: outlookAPIKey
-        )
-    }
+    
     
     /// Initiates a scan for a physical receipt.
     ///
@@ -88,7 +47,7 @@ public class CaptureReceipt {
     ) async {
         do{
             let licenses = try await tikiSdk.trail.license.all(titleId: title!.id)
-            physical!.scan(scanCallback: PhysicalScanCallbacks(
+            physical.scan(scanCallback: PhysicalScanCallbacks(
                 onResult: {
                 },
                 onCancel: onComplete,
@@ -116,7 +75,7 @@ public class CaptureReceipt {
         onError: @escaping (String) -> Void
     ) {
         
-        email!.login(username: username, password: password, onError: onError, onSuccess: onSuccess)
+        email.login(username: username, password: password, onError: onError, onSuccess: onSuccess)
 
         
     }
@@ -145,7 +104,7 @@ public class CaptureReceipt {
         onError: @escaping (String) -> Void
     ) {
 
-        email!.logout(onError: {error in onError(error)}, onComplete: onSuccess, account: username)
+        email.logout(onError: {error in onError(error)}, onComplete: onSuccess, account: username)
 
     }
     /// Log out all account.
@@ -157,7 +116,7 @@ public class CaptureReceipt {
         onSuccess: @escaping () -> Void,
         onError: @escaping (String) -> Void
     ) {
-            email!.logout(onError: {error in onError(error)}, onComplete: onSuccess)
+        email.logout(onError: {error in onError(error)}, onComplete: onSuccess)
     }
     
     /// Retrieve digital receipt data for a specific account type.
@@ -174,7 +133,7 @@ public class CaptureReceipt {
         onError: @escaping (String) -> Void,
         onComplete: @escaping () -> Void
     ) {
-        email?.scan(onError: {error in onError(error)}, onReceipt: { }, onComplete: onComplete)
+        email.scan(onError: {error in onError(error)}, onReceipt: { }, onComplete: onComplete)
 
         
     }
