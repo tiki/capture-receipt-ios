@@ -17,8 +17,12 @@ Pod::Spec.new do |s|
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'TIKI Team' => 'hello@mytiki.com' }
   s.source           = { :git => 'https://github.com/tiki/capture-receipt-ios.git', :tag => s.version.to_s }
+  
   s.ios.deployment_target = '15.0'
+  
   s.source_files = 'CaptureReceipt/Classes/**/*'
+
   s.dependency 'TikiSdkDebug', '3.0.0', :configurations => 'Debug'
   s.dependency 'TikiSdkRelease', '3.0.0', :configurations => 'Release'
+  s.dependency 'AppAuth'
 end

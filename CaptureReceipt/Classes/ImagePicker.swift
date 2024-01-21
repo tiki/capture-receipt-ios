@@ -33,14 +33,14 @@ final class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigation
         self.parent = parent
     }
 
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-
-        guard let image = info[.originalImage] as? UIImage else {
-                return
-        }
-
-        parent.presentationMode.wrappedValue.dismiss()
-    }
+//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+//
+//        guard let image = info[.originalImage] as? UIImage else {
+//                return
+//        }
+//
+//        parent.presentationMode.wrappedValue.dismiss()
+//    }
 
 }
 

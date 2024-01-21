@@ -3,12 +3,12 @@ import TikiSdk
 /// The Capture Receipt SDK provides methods to interact with the TIKI Capture Receipt SDK for iOS.
 public class CaptureReceipt {
     
-    private static var tikiSdk: TikiSdk = TikiSdk.instance
-    private static var email = Email()
-    private static var physical = Physical()
-    private static var builder = CaptureReceiptBuilder()
-    private static var license: LicenseRecord? = nil
-    private static var userId: String? = nil
+    public static var tikiSdk: TikiSdk = TikiSdk.instance
+    public static var email = Email()
+    public static var physical = Physical()
+    public static var builder = CaptureReceiptBuilder()
+    public static var license: LicenseRecord? = nil
+    public static var userId: String? = nil
     public static var title: TitleRecord? = nil
     public static var receiptService: ReceiptService? = nil
     
@@ -75,7 +75,7 @@ public class CaptureReceipt {
         onError: @escaping (String) -> Void
     ) {
         
-        email.login(username: username, password: password, onError: onError, onSuccess: onSuccess)
+        //email.login(username: username, password: password, onError: onError, onSuccess: onSuccess)
 
         
     }

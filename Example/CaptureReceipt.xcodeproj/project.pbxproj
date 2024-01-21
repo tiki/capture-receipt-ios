@@ -304,6 +304,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-CaptureReceipt_Example/Pods-CaptureReceipt_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AppAuth/AppAuth.framework",
 				"${BUILT_PRODUCTS_DIR}/CaptureReceipt/CaptureReceipt.framework",
 				"${BUILT_PRODUCTS_DIR}/TikiSdkDebug/TikiSdk.framework",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/TikiSdkDebug/App.framework/App",
@@ -320,6 +321,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AppAuth.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CaptureReceipt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TikiSdk.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/App.framework",
@@ -474,7 +476,7 @@
 				INFOPLIST_FILE = CaptureReceipt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mytiki.sdk.capture.receipt.capacitor;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mytiki.sdk.capture.receipt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;

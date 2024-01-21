@@ -10,6 +10,8 @@ target 'CaptureReceipt_Example' do
   pod 'TikiSdkDebug', '3.0.0', :configurations => 'Debug'
   pod 'TikiSdkRelease', '3.0.0', :configurations => 'Release'
   
+  pod 'AppAuth'
+  
   pod 'CaptureReceipt', :path => '../'
   
   target 'CaptureReceipt_Tests' do
