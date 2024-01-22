@@ -68,14 +68,10 @@ public class CaptureReceipt {
     ///   - accountType: The type of account, e.g., Gmail or Retailer.
     ///   - onSuccess: A callback executed on successful login, providing the account information.
     ///   - onError: A callback executed if there is an error during login, providing an error message.
-    public static func login(
-        username: String,
-        password: String,
-        onSuccess: @escaping () -> Void,
-        onError: @escaping (String) -> Void
-    ) {
-        
-        //email.login(username: username, password: password, onError: onError, onSuccess: onSuccess)
+    public static func login() {
+        let clientId = ""
+        let clientSecret = ""
+        email.login(.GOOGLE, clientId, clientSecret)
 
         
     }

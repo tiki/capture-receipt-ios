@@ -36,14 +36,12 @@ public class Email {
     ///   - account: An instance of the Account class containing user and account information.
     ///   - onError: A closure to handle error messages.
     ///   - onSuccess: A closure to handle success actions.
-    public func login() {
-        let authorizationEndpoint = URL(string: "https://accounts.google.com/o/oauth2/v2/auth")!
-        let tokenEndpoint = URL(string: "https://www.googleapis.com/oauth2/v4/token")!
-        let configuration = OIDServiceConfiguration(authorizationEndpoint: authorizationEndpoint,
-                                                    tokenEndpoint: tokenEndpoint)
-        let clientID = "10931403058-ngesnfk9tjsrvegnkd7ol0phhv58sjcs.apps.googleusercontent.com"
-        let clientSecret = ""
-        let redirectURI = URL(string: "com.googleusercontent.apps.10931403058-ngesnfk9tjsrvegnkd7ol0phhv58sjcs")!
+    public func login(_ provider:EmailProviderEnum, _ clientID: String, _ clientSecret: String = "") {
+
+        let configuration = OIDServiceConfiguration(
+            authorizationEndpoint: provider.authorizationEndpoint(),
+            tokenEndpoint: provider.tokenEndpoint())
+        let redirectURI = URL(string: "mytiki://app-auth")!
         let viewController = UIApplication.shared.windows.first!.rootViewController!
         let request = OIDAuthorizationRequest(configuration: configuration,
                                               clientId: clientID,
@@ -109,19 +107,5 @@ public class Email {
         
         onComplete()
     }
-    
-    
-    //    private func getDayCutOff() -> Int{
-    //        if (defaults.object(forKey: "lastIMAPScan") != nil) {
-    //            let dayCutOffSaved = defaults.object(forKey: "lastIMAPScan") as! Date
-    //            let timeInterval = dayCutOffSaved.timeIntervalSinceNow
-    //            let difference = Int((timeInterval)) / 86400
-    //            if(difference < 15 && difference >= 0){
-    //                return difference
-    //            }
-    //        }
-    //        return 15
-    //    }
-    
     
 }
