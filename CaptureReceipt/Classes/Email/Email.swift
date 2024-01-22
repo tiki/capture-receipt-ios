@@ -5,11 +5,19 @@
  */
 
 import Foundation
+import AppAuth
 
 /// A Swift class representing an email plugin for handling e-receipts and email account management.
 public class Email {
     
+    static var currentAuthorizationFlow: OIDExternalUserAgentSession?
+    
     let defaults = UserDefaults.standard
+    
+    private var authState: OIDAuthState?
+    public func setAuthState(_ state: OIDAuthState?){
+        authState = state
+    }
     
     /// Initializes the Email plugin with license and product keys.
     ///
@@ -28,7 +36,34 @@ public class Email {
     ///   - account: An instance of the Account class containing user and account information.
     ///   - onError: A closure to handle error messages.
     ///   - onSuccess: A closure to handle success actions.
-    public func login(username: String, password: String, onError: @escaping (String) -> Void, onSuccess: @escaping () -> Void) {
+    public func login(_ provider:EmailProviderEnum, _ clientID: String, _ clientSecret: String = "") {
+
+        let configuration = OIDServiceConfiguration(
+            authorizationEndpoint: provider.authorizationEndpoint(),
+            tokenEndpoint: provider.tokenEndpoint())
+        let redirectURI = URL(string: "mytiki://app-auth")!
+        let viewController = UIApplication.shared.windows.first!.rootViewController!
+        let request = OIDAuthorizationRequest(configuration: configuration,
+                                              clientId: clientID,
+                                              clientSecret: clientSecret,
+                                              scopes: [OIDScopeOpenID, OIDScopeProfile],
+                                              redirectURL: redirectURI,
+                                              responseType: OIDResponseTypeCode,
+                                              additionalParameters: nil)
+
+        // performs authentication request
+        print("Initiating authorization request with scope: \(request.scope ?? "nil")")
+
+        Email.currentAuthorizationFlow = OIDAuthState.authState(byPresenting: request, presenting: viewController) { authState, error in
+          if let authState = authState {
+            self.setAuthState(authState)
+            print("Got authorization tokens. Access token: " +
+                  "\(authState.lastTokenResponse?.accessToken ?? "nil")")
+          } else {
+            print("Authorization error: \(error?.localizedDescription ?? "Unknown error")")
+            self.setAuthState(nil)
+          }
+        }
         
     }
     
@@ -72,19 +107,5 @@ public class Email {
         
         onComplete()
     }
-    
-    
-    //    private func getDayCutOff() -> Int{
-    //        if (defaults.object(forKey: "lastIMAPScan") != nil) {
-    //            let dayCutOffSaved = defaults.object(forKey: "lastIMAPScan") as! Date
-    //            let timeInterval = dayCutOffSaved.timeIntervalSinceNow
-    //            let difference = Int((timeInterval)) / 86400
-    //            if(difference < 15 && difference >= 0){
-    //                return difference
-    //            }
-    //        }
-    //        return 15
-    //    }
-    
     
 }
